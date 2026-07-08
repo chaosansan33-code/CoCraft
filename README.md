@@ -12,8 +12,8 @@
 - plans.html
 - nfc.html
 - contact.html
-- css/style.css
-- js/script.js
+- style.css
+- script.js
 - images/ 資料夾
 
 ## 圖片檔名
