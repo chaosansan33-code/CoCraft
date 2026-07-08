@@ -44,36 +44,40 @@ button{
   top:0;
   width:100%;
   z-index:1000;
-  padding:18px 7vw;
+  padding:28px 7vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(245,238,223,.88);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(226,208,181,.85);
+  background:linear-gradient(to bottom, rgba(0,0,0,.42), rgba(0,0,0,0));
+  border-bottom:none;
+  color:white;
 }
 .logo{
-  font-size:1.45rem;
+  font-size:1.55rem;
   font-weight:900;
   letter-spacing:.14em;
+  color:white;
+  text-shadow:0 2px 12px rgba(0,0,0,.35);
 }
 .nav-links{
   display:flex;
-  gap:30px;
-  color:var(--brown2);
-  font-size:.96rem;
-  font-weight:500;
+  gap:32px;
+  color:white;
+  font-size:.98rem;
+  font-weight:700;
+  align-items:center;
+  text-shadow:0 2px 12px rgba(0,0,0,.35);
 }
-.nav-links a:hover{color:var(--brick)}
+.nav-links a:hover{color:#F1CE8A}
 .nav-cta{
-  border:1px solid var(--brown);
+  border:1px solid rgba(255,255,255,.78);
   border-radius:999px;
-  padding:8px 16px;
-  color:var(--brown)!important;
+  padding:9px 18px;
+  color:white!important;
 }
 .nav-cta:hover{
-  background:var(--brown);
-  color:white!important;
+  background:white;
+  color:var(--brown)!important;
 }
 
 .page{
@@ -90,11 +94,29 @@ button{
 section{padding:96px 7vw}
 .hero{
   min-height:100vh;
-  padding:132px 7vw 76px;
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
+  padding:150px 7vw 90px;
+  display:flex;
   align-items:center;
-  gap:72px;
+  position:relative;
+  overflow:hidden;
+  color:white;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.48) 38%, rgba(0,0,0,.12) 72%, rgba(0,0,0,.04) 100%),
+    url("images/hero.jpg") center center / cover no-repeat;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 18% 55%, rgba(179,95,69,.18), transparent 34%),
+    linear-gradient(to top, rgba(0,0,0,.42), transparent 34%);
+  pointer-events:none;
+}
+.hero > div:first-child{
+  position:relative;
+  z-index:2;
+  max-width:760px;
 }
 .kicker{
   color:var(--green);
@@ -487,9 +509,47 @@ input,select,textarea{
   max-width:900px;
 }
 
+
+.hero .kicker{
+  color:rgba(169,180,154,.95);
+  font-weight:900;
+  letter-spacing:.26em;
+  font-size:.95rem;
+  margin-bottom:28px;
+}
+.hero h1{
+  font-size:clamp(3.4rem,6.5vw,7.2rem);
+  line-height:1.14;
+  letter-spacing:.045em;
+  margin:0;
+  color:white;
+  text-shadow:0 4px 24px rgba(0,0,0,.36);
+}
+.hero p{
+  max-width:650px;
+  color:rgba(255,255,255,.82);
+  font-size:1.08rem;
+  margin:30px 0 38px;
+  text-shadow:0 2px 12px rgba(0,0,0,.38);
+}
+.hero-btn{
+  color:white;
+  border-color:rgba(255,255,255,.82);
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(8px);
+}
+.hero-btn.primary{
+  background:rgba(255,255,255,.96);
+  color:var(--brown);
+  border-color:rgba(255,255,255,.96);
+}
+.hero-btn:hover{
+  background:white;
+  color:var(--brown);
+}
 @media(max-width:960px){
   .nav-links{display:none}
-  .hero,.two-col,.scroll-showcase,.grid-3,.stats,.product-grid,.plan-grid{
+  .two-col,.scroll-showcase,.grid-3,.stats,.product-grid,.plan-grid{
     grid-template-columns:1fr;
   }
   section{padding:76px 6vw}
@@ -518,25 +578,14 @@ input,select,textarea{
   <section class="hero">
     <div>
       <div class="kicker">CRAFTS THAT KEEP LIVING</div>
-      <h1>帶走一件紀念品，<br>也留下台灣的一門技藝。</h1>
+      <h1>帶走一件紀念品，<br>也留下台灣的<br>一門技藝。</h1>
       <p>
         記藝共養所將職人的手藝、故事與製作過程，轉化為能被收藏、被感應、被持續追蹤的共養型物件。
         每一次支持，都讓一門技藝重新被需要。
       </p>
       <div class="btn-row">
-        <button class="btn primary" onclick="showPage('products')">探索共養商品</button>
-        <button class="btn light" onclick="goHomeSection('story')">閱讀品牌故事</button>
-      </div>
-    </div>
-
-    <div class="image-frame">
-      <div>
-        首頁主視覺圖片位置<br>
-        檔名建議：images/hero.jpg
-      </div>
-      <div class="hero-card">
-        <strong>技藝不是過去式。</strong>
-        <span>它可以被使用、被理解，也可以在現代生活中繼續發光。</span>
+        <button class="btn primary hero-btn" onclick="showPage('products')">探索共養商品</button>
+        <button class="btn light hero-btn" onclick="goHomeSection('story')">閱讀品牌故事</button>
       </div>
     </div>
   </section>
@@ -680,7 +729,7 @@ input,select,textarea{
       <div class="price">NT$10,000</div>
       <div class="progress"><span style="width:62%"></span></div>
       <div class="product-meta"><span>共養進度 62%</span><span>限量 20 組</span></div>
-      <button class="btn primary">加入共養</button>
+      <button class="btn primary" onclick="showPage('product-umbrella')">查看詳情</button>
     </div>
 
     <div class="product-card">
@@ -690,7 +739,7 @@ input,select,textarea{
       <div class="price">NT$333</div>
       <div class="progress"><span style="width:45%"></span></div>
       <div class="product-meta"><span>共養進度 45%</span><span>限量 100 件</span></div>
-      <button class="btn primary">加入共養</button>
+      <button class="btn primary" onclick="showPage('product-bamboo')">查看詳情</button>
     </div>
 
     <div class="product-card">
@@ -700,9 +749,132 @@ input,select,textarea{
       <div class="price">NT$2,000</div>
       <div class="progress"><span style="width:78%"></span></div>
       <div class="product-meta"><span>共養進度 78%</span><span>限量 35 件</span></div>
-      <button class="btn primary">加入共養</button>
+      <button class="btn primary" onclick="showPage('product-chunzihua')">查看詳情</button>
     </div>
   </div>
+</section>
+
+<section id="product-umbrella" class="page simple-page">
+  <a class="back-link" onclick="showPage('products')">← 回商品頁</a>
+  <div class="two-col">
+    <div class="image-frame">
+      商品詳情主圖位置<br>
+      檔名建議：images/umbrella-detail.jpg
+    </div>
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">CRAFT DETAIL</div>
+        <h2>美濃油紙傘共養組</h2>
+        <p>
+          油紙傘承載客家文化中的圓滿、祝福與地方記憶。透過共養組，我們希望支持職人工序紀錄、
+          數位履歷建置與未來工作坊推廣，讓這項技藝重新被看見。
+        </p>
+      </div>
+      <div class="price">共養價 NT$10,000</div>
+      <div class="progress"><span style="width:62%"></span></div>
+      <div class="product-meta"><span>共養進度 62%</span><span>限量 20 組</span></div>
+      <button class="btn primary" onclick="showPage('contact')">加入共養</button>
+    </div>
+  </div>
+
+  <section style="padding-left:0;padding-right:0;padding-bottom:0;">
+    <div class="grid-3">
+      <div class="card">
+        <h3>商品內容</h3>
+        <p>油紙傘作品、NFC 數位履歷、共養者登錄、技藝進度更新。</p>
+      </div>
+      <div class="card">
+        <h3>資金用途</h3>
+        <p>職人收入、材料成本、製作工序紀錄、故事頁維護與工作坊籌備。</p>
+      </div>
+      <div class="card">
+        <h3>NFC 可看見</h3>
+        <p>職人故事、製作流程、油紙傘文化意義、共養進度與活動通知。</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section id="product-bamboo" class="page simple-page">
+  <a class="back-link" onclick="showPage('products')">← 回商品頁</a>
+  <div class="two-col">
+    <div class="image-frame">
+      商品詳情主圖位置<br>
+      檔名建議：images/bamboo-detail.jpg
+    </div>
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">CRAFT DETAIL</div>
+        <h2>竹籐編織生活小物</h2>
+        <p>
+          竹籐編織從取材、削竹、編織到成形，每一步都需要經驗與手感。
+          我們將技藝轉化為日常小物，讓傳統工藝重新回到生活使用情境。
+        </p>
+      </div>
+      <div class="price">共養價 NT$333</div>
+      <div class="progress"><span style="width:45%"></span></div>
+      <div class="product-meta"><span>共養進度 45%</span><span>限量 100 件</span></div>
+      <button class="btn primary" onclick="showPage('contact')">加入共養</button>
+    </div>
+  </div>
+
+  <section style="padding-left:0;padding-right:0;padding-bottom:0;">
+    <div class="grid-3">
+      <div class="card">
+        <h3>商品內容</h3>
+        <p>竹籐編織杯墊／吊飾／生活小物、NFC 數位履歷、共養者更新通知。</p>
+      </div>
+      <div class="card">
+        <h3>資金用途</h3>
+        <p>材料費、職人製作費、影像紀錄、數位頁面製作與後續體驗活動。</p>
+      </div>
+      <div class="card">
+        <h3>NFC 可看見</h3>
+        <p>竹材處理、編織步驟、職人訪談、共養成果與工作坊消息。</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section id="product-chunzihua" class="page simple-page">
+  <a class="back-link" onclick="showPage('products')">← 回商品頁</a>
+  <div class="two-col">
+    <div class="image-frame">
+      商品詳情主圖位置<br>
+      檔名建議：images/chunzihua-detail.jpg
+    </div>
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">CRAFT DETAIL</div>
+        <h2>春仔花共養飾品</h2>
+        <p>
+          春仔花曾是婚嫁文化中的祝福象徵，代表喜氣、家族情感與女性手藝。
+          我們希望透過現代飾品與收藏形式，讓這項技藝被年輕世代理解與保存。
+        </p>
+      </div>
+      <div class="price">共養價 NT$2,000</div>
+      <div class="progress"><span style="width:78%"></span></div>
+      <div class="product-meta"><span>共養進度 78%</span><span>限量 35 件</span></div>
+      <button class="btn primary" onclick="showPage('contact')">加入共養</button>
+    </div>
+  </div>
+
+  <section style="padding-left:0;padding-right:0;padding-bottom:0;">
+    <div class="grid-3">
+      <div class="card">
+        <h3>商品內容</h3>
+        <p>春仔花飾品、作品編號、NFC 數位履歷、共養者登錄與進度通知。</p>
+      </div>
+      <div class="card">
+        <h3>資金用途</h3>
+        <p>職人製作收入、傳統工序紀錄、現代設計轉譯與教學推廣。</p>
+      </div>
+      <div class="card">
+        <h3>NFC 可看見</h3>
+        <p>春仔花文化故事、製作過程、職人訪談、共養進度與活動資訊。</p>
+      </div>
+    </div>
+  </section>
 </section>
 
 <section id="plans" class="page simple-page">
