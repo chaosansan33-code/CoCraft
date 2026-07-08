@@ -1,853 +1,29 @@
-from pathlib import Path
-import base64, mimetypes, textwrap
-
-hero_file = Path("/mnt/data/image(50).png")
-if not hero_file.exists():
-    hero_file = Path("/mnt/data/image(52).png")
-mime = mimetypes.guess_type(hero_file.name)[0] or "image/png"
-hero_b64 = base64.b64encode(hero_file.read_bytes()).decode("ascii")
-hero_data_url = f"data:{mime};base64,{hero_b64}"
-
-html = f'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>記藝共養所｜讓台灣技藝重新被需要</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {{
-  --cream:#F5EBDD;
-  --paper:#FFF8EC;
-  --paper-soft:#FAF0DF;
-  --ink:#2D1F16;
-  --ink-soft:#6F5842;
-  --muted:#9B846B;
-  --line:#E2CFB3;
-  --gold:#C99B57;
-  --sage:#6C7C61;
-  --brick:#B45F45;
-  --black:#12100E;
-  --white:#FFFFFF;
-  --shadow:0 24px 70px rgba(45,31,22,.16);
-  --radius-xl:44px;
-  --radius-lg:30px;
-  --radius-md:18px;
-}}
-
-* {{
-  box-sizing:border-box;
-}}
-
-html {{
-  scroll-behavior:smooth;
-}}
-
-body {{
-  margin:0;
-  font-family:"Noto Sans TC", sans-serif;
-  background:var(--cream);
-  color:var(--ink);
-  line-height:1.8;
-  overflow-x:hidden;
-}}
-
-h1,h2,h3,.logo,.serif {{
-  font-family:"Noto Serif TC", serif;
-}}
-
-a {{
-  color:inherit;
-  text-decoration:none;
-  cursor:pointer;
-}}
-
-button {{
-  font-family:inherit;
-  cursor:pointer;
-}}
-
-img {{
-  width:100%;
-  display:block;
-}}
-
-::selection {{
-  background:rgba(201,155,87,.35);
-}}
-
-.page {{
-  display:none;
-  min-height:100vh;
-  animation:pageIn .55s ease both;
-}}
-
-.page.active {{
-  display:block;
-}}
-
-@keyframes pageIn {{
-  from {{ opacity:0; transform:translateY(18px); }}
-  to {{ opacity:1; transform:translateY(0); }}
-}}
-
-.reveal {{
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity .8s ease, transform .8s ease;
-}}
-
-.reveal.show {{
-  opacity:1;
-  transform:translateY(0);
-}}
-
-.navbar {{
-  position:fixed;
-  top:0;
-  width:100%;
-  height:92px;
-  padding:0 6.8vw;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  z-index:9999;
-  color:white;
-  transition:background .35s ease, color .35s ease, height .35s ease, box-shadow .35s ease;
-}}
-
-.navbar.scrolled {{
-  height:76px;
-  color:var(--ink);
-  background:rgba(245,235,221,.92);
-  backdrop-filter:blur(18px);
-  box-shadow:0 10px 30px rgba(45,31,22,.08);
-}}
-
-.logo {{
-  font-weight:900;
-  font-size:1.55rem;
-  letter-spacing:.13em;
-  text-shadow:0 2px 14px rgba(0,0,0,.22);
-}}
-
-.navbar.scrolled .logo {{
-  text-shadow:none;
-}}
-
-.nav-center {{
-  display:flex;
-  justify-content:center;
-  gap:34px;
-  font-size:.96rem;
-  font-weight:700;
-  letter-spacing:.04em;
-}}
-
-.nav-center a {{
-  opacity:.92;
-  transition:.25s;
-}}
-
-.nav-center a:hover {{
-  color:var(--gold);
-}}
-
-.nav-right {{
-  display:flex;
-  justify-content:flex-end;
-}}
-
-.nav-pill {{
-  border:1px solid currentColor;
-  border-radius:999px;
-  padding:9px 18px;
-  font-weight:800;
-}}
-
-.mobile-menu-btn {{
-  display:none;
-  border:0;
-  background:transparent;
-  color:inherit;
-  font-size:1.4rem;
-}}
-
-.hero {{
-  min-height:100vh;
-  position:relative;
-  color:white;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.74) 0%, rgba(0,0,0,.52) 38%, rgba(0,0,0,.14) 72%, rgba(0,0,0,.03) 100%),
-    url("{hero_data_url}") center center / cover no-repeat;
-}}
-
-.hero::before {{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 18% 52%, rgba(180,95,69,.2), transparent 34%),
-    linear-gradient(to bottom, rgba(0,0,0,.18), transparent 24%),
-    linear-gradient(to top, rgba(0,0,0,.58), transparent 36%);
-  pointer-events:none;
-}}
-
-.hero-content {{
-  position:relative;
-  z-index:2;
-  width:min(840px, 88vw);
-  margin-left:6.8vw;
-  padding-top:80px;
-}}
-
-.eyebrow {{
-  font-family:"Cormorant Garamond", serif;
-  color:rgba(143,164,132,.98);
-  font-size:1.08rem;
-  font-weight:700;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  margin-bottom:30px;
-}}
-
-.hero h1 {{
-  margin:0;
-  font-size:clamp(3.5rem, 7vw, 7.6rem);
-  line-height:1.12;
-  letter-spacing:.045em;
-  text-shadow:0 4px 28px rgba(0,0,0,.34);
-}}
-
-.hero p {{
-  max-width:670px;
-  margin:34px 0 40px;
-  color:rgba(255,255,255,.82);
-  font-size:1.08rem;
-  letter-spacing:.04em;
-}}
-
-.btn-row {{
-  display:flex;
-  gap:16px;
-  flex-wrap:wrap;
-}}
-
-.btn {{
-  border:1px solid currentColor;
-  background:transparent;
-  color:inherit;
-  border-radius:999px;
-  padding:13px 28px;
-  font-weight:900;
-  letter-spacing:.04em;
-  transition:.28s ease;
-}}
-
-.btn:hover {{
-  transform:translateY(-3px);
-  box-shadow:0 18px 45px rgba(0,0,0,.18);
-}}
-
-.btn.white {{
-  background:white;
-  color:var(--ink);
-  border-color:white;
-}}
-
-.btn.dark {{
-  background:var(--ink);
-  color:white;
-  border-color:var(--ink);
-}}
-
-.btn.ghost-white {{
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(10px);
-  color:white;
-  border-color:rgba(255,255,255,.82);
-}}
-
-.scroll-indicator {{
-  position:absolute;
-  left:6.8vw;
-  bottom:34px;
-  z-index:2;
-  display:flex;
-  gap:12px;
-  align-items:center;
-  color:rgba(255,255,255,.78);
-  font-size:.82rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-}}
-
-.scroll-line {{
-  width:54px;
-  height:1px;
-  background:rgba(255,255,255,.62);
-}}
-
-section {{
-  padding:108px 6.8vw;
-}}
-
-.section-head {{
-  max-width:850px;
-  margin-bottom:48px;
-}}
-
-.section-head.center {{
-  text-align:center;
-  margin-left:auto;
-  margin-right:auto;
-}}
-
-.label {{
-  color:var(--sage);
-  font-weight:900;
-  letter-spacing:.18em;
-  font-size:.82rem;
-  text-transform:uppercase;
-  margin-bottom:14px;
-}}
-
-.section-head h2 {{
-  margin:0 0 18px;
-  font-size:clamp(2.15rem, 4.2vw, 4.4rem);
-  line-height:1.22;
-  letter-spacing:.035em;
-}}
-
-.section-head p {{
-  margin:0;
-  color:var(--ink-soft);
-  font-size:1.02rem;
-}}
-
-.two-col {{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:64px;
-  align-items:center;
-}}
-
-.image-card {{
-  border-radius:var(--radius-xl);
-  min-height:520px;
-  overflow:hidden;
-  background:
-    linear-gradient(rgba(255,255,255,.58),rgba(255,255,255,.58)),
-    repeating-linear-gradient(45deg,#EAD8BB 0,#EAD8BB 16px,#F7EAD6 16px,#F7EAD6 32px);
-  border:2px dashed #C8B492;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:var(--muted);
-  padding:30px;
-  font-weight:900;
-  box-shadow:var(--shadow);
-}}
-
-.text-panel {{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius-xl);
-  padding:52px;
-  box-shadow:var(--shadow);
-}}
-
-.lead-quote {{
-  font-family:"Noto Serif TC", serif;
-  font-size:1.8rem;
-  line-height:1.55;
-  letter-spacing:.04em;
-  color:var(--ink);
-  margin:0 0 26px;
-}}
-
-.text-panel p {{
-  color:var(--ink-soft);
-}}
-
-.cards {{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:28px;
-}}
-
-.card {{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius-lg);
-  padding:34px;
-  box-shadow:var(--shadow);
-  transition:.3s ease;
-}}
-
-.card:hover {{
-  transform:translateY(-8px);
-}}
-
-.card-num {{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:var(--brick);
-  color:white;
-  font-weight:900;
-  margin-bottom:20px;
-}}
-
-.card h3 {{
-  margin:0 0 12px;
-  font-size:1.6rem;
-  line-height:1.35;
-}}
-
-.card p {{
-  color:var(--ink-soft);
-  margin:0;
-}}
-
-.dark-band {{
-  background:var(--black);
-  color:white;
-  position:relative;
-  overflow:hidden;
-}}
-
-.dark-band::before {{
-  content:"";
-  position:absolute;
-  inset:auto -20% -40% 40%;
-  width:580px;
-  height:580px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(201,155,87,.22), transparent 65%);
-}}
-
-.dark-band .section-head p,
-.dark-band .card p {{
-  color:rgba(255,255,255,.68);
-}}
-
-.dark-band .card {{
-  background:rgba(255,255,255,.07);
-  border-color:rgba(255,255,255,.14);
-  box-shadow:none;
-}}
-
-.dark-band .card-num {{
-  background:#EBC878;
-  color:var(--ink);
-}}
-
-.showcase {{
-  display:grid;
-  grid-template-columns:.95fr 1.05fr;
-  gap:64px;
-  align-items:center;
-}}
-
-.phone {{
-  width:min(390px, 100%);
-  margin:auto;
-  background:#2B211A;
-  border-radius:48px;
-  padding:18px;
-  box-shadow:0 35px 90px rgba(0,0,0,.28);
-}}
-
-.screen {{
-  min-height:610px;
-  background:var(--paper);
-  border-radius:34px;
-  padding:26px;
-}}
-
-.screen-photo {{
-  height:155px;
-  border-radius:24px;
-  border:2px dashed #C8B492;
-  background:#EAD8BB;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:var(--muted);
-  font-weight:900;
-  margin-bottom:20px;
-  overflow:hidden;
-}}
-
-.screen h3 {{
-  margin:0 0 16px;
-  font-size:1.35rem;
-}}
-
-.info-row {{
-  padding:13px 0;
-  border-bottom:1px solid var(--line);
-  color:var(--ink-soft);
-  font-size:.95rem;
-}}
-
-.langs {{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:18px;
-}}
-
-.langs span {{
-  background:#EADBC5;
-  border-radius:999px;
-  padding:5px 10px;
-  font-size:.8rem;
-  color:var(--ink-soft);
-}}
-
-.stats {{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}}
-
-.stat {{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius-lg);
-  padding:32px 22px;
-  text-align:center;
-  box-shadow:var(--shadow);
-}}
-
-.stat strong {{
-  display:block;
-  font-family:"Cormorant Garamond", serif;
-  font-size:3.2rem;
-  line-height:1;
-  color:var(--brick);
-}}
-
-.stat span {{
-  color:var(--ink-soft);
-}}
-
-.featured-crafts {{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:28px;
-}}
-
-.feature-large,
-.feature-small {{
-  min-height:560px;
-  border-radius:var(--radius-xl);
-  background:var(--paper);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-}}
-
-.feature-small-wrap {{
-  display:grid;
-  gap:28px;
-}}
-
-.feature-small {{
-  min-height:266px;
-}}
-
-.feature-img {{
-  flex:1;
-  min-height:260px;
-  background:
-    linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)),
-    repeating-linear-gradient(45deg,#EAD8BB 0,#EAD8BB 16px,#F7EAD6 16px,#F7EAD6 32px);
-  border-bottom:1px solid var(--line);
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:var(--muted);
-  font-weight:900;
-  overflow:hidden;
-}}
-
-.feature-content {{
-  padding:28px;
-}}
-
-.feature-content h3 {{
-  font-size:1.75rem;
-  margin:0 0 8px;
-}}
-
-.feature-content p {{
-  color:var(--ink-soft);
-  margin:0;
-}}
-
-.page-content {{
-  padding:132px 6.8vw 108px;
-}}
-
-.product-grid {{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:30px;
-}}
-
-.product-card {{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius-xl);
-  padding:22px;
-  box-shadow:var(--shadow);
-  transition:.3s ease;
-}}
-
-.product-card:hover {{
-  transform:translateY(-8px);
-}}
-
-.product-img {{
-  height:280px;
-  border-radius:30px;
-  border:2px dashed #C8B492;
-  background:#EAD8BB;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:var(--muted);
-  font-weight:900;
-  overflow:hidden;
-}}
-
-.product-card h3 {{
-  font-size:1.55rem;
-  margin:20px 0 8px;
-}}
-
-.product-card p {{
-  color:var(--ink-soft);
-}}
-
-.price {{
-  color:var(--brick);
-  font-weight:900;
-  font-size:1.22rem;
-  margin:16px 0 10px;
-}}
-
-.progress {{
-  height:10px;
-  border-radius:999px;
-  overflow:hidden;
-  background:#E9DAC3;
-  margin:14px 0 8px;
-}}
-
-.progress span {{
-  display:block;
-  height:100%;
-  background:var(--sage);
-}}
-
-.meta {{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:.88rem;
-  margin-bottom:18px;
-}}
-
-.detail-hero {{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:64px;
-  align-items:center;
-}}
-
-.detail-image {{
-  min-height:620px;
-  border-radius:var(--radius-xl);
-  border:2px dashed #C8B492;
-  background:#EAD8BB;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:var(--muted);
-  font-weight:900;
-  box-shadow:var(--shadow);
-}}
-
-.detail-info {{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius-xl);
-  padding:48px;
-  box-shadow:var(--shadow);
-}}
-
-.detail-info h1 {{
-  font-size:clamp(2.2rem,4vw,4.2rem);
-  line-height:1.2;
-  margin:0 0 20px;
-}}
-
-.detail-info p {{
-  color:var(--ink-soft);
-}}
-
-.info-grid {{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  margin-top:54px;
-}}
-
-.plan-grid {{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:28px;
-}}
-
-.plan {{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius-xl);
-  padding:38px;
-  box-shadow:var(--shadow);
-}}
-
-.plan h3 {{
-  font-size:1.65rem;
-  margin:0 0 8px;
-}}
-
-.amount {{
-  font-family:"Cormorant Garamond", serif;
-  color:var(--brick);
-  font-size:3rem;
-  font-weight:700;
-}}
-
-.plan ul {{
-  color:var(--ink-soft);
-  padding-left:22px;
-}}
-
-.form-box {{
-  width:min(700px,100%);
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius-xl);
-  padding:42px;
-  box-shadow:var(--shadow);
-}}
-
-input,select,textarea {{
-  width:100%;
-  padding:15px 16px;
-  margin-bottom:14px;
-  border-radius:16px;
-  border:1px solid #D8C5AA;
-  background:#FFFDF7;
-  font-family:inherit;
-  font-size:1rem;
-}}
-
-.back-link {{
-  display:inline-block;
-  margin-bottom:32px;
-  color:var(--ink-soft);
-  font-weight:900;
-}}
-
-.footer {{
-  background:#211812;
-  color:white;
-  padding:58px 6.8vw;
-}}
-
-.footer p {{
-  color:#D8C7B1;
-  max-width:920px;
-}}
-
-@media(max-width:980px) {{
-  .navbar {{
-    height:76px;
-    padding:0 6vw;
-  }}
-
-  .nav-center,.nav-right {{
-    display:none;
-  }}
-
-  .mobile-menu-btn {{
-    display:block;
-    justify-self:end;
-  }}
-
-  .navbar {{
-    grid-template-columns:1fr auto;
-  }}
-
-  .hero-content {{
-    margin-left:6vw;
-    width:88vw;
-  }}
-
-  .hero h1 {{
-    font-size:clamp(3rem,13vw,5.2rem);
-  }}
-
-  section,.page-content {{
-    padding-left:6vw;
-    padding-right:6vw;
-  }}
-
-  .two-col,.cards,.showcase,.stats,.featured-crafts,.product-grid,.detail-hero,.info-grid,.plan-grid {{
-    grid-template-columns:1fr;
-  }}
-
-  .image-card,.detail-image {{
-    min-height:380px;
-  }}
-}}
-</style>
+<link rel="stylesheet" href="css/style.css" />
 </head>
-
-<body>
-
+<body class="home-page">
 <nav class="navbar" id="navbar">
-  <a class="logo" onclick="showPage('home')">記藝共養所</a>
+  <a class="logo" href="index.html">記藝共養所</a>
   <div class="nav-center">
-    <a onclick="goHomeSection('story')">品牌故事</a>
-    <a onclick="goHomeSection('model')">共養模式</a>
-    <a onclick="goHomeSection('digital')">數位履歷</a>
-    <a onclick="showPage('products')">商品頁</a>
-    <a onclick="showPage('plans')">共養方案</a>
+    <a href="index.html#story">品牌故事</a>
+    <a href="index.html#model">共養模式</a>
+    <a href="index.html#digital">數位履歷</a>
+    <a href="products.html">商品頁</a>
+    <a href="plans.html">共養方案</a>
   </div>
   <div class="nav-right">
-    <a class="nav-pill" onclick="showPage('contact')">聯絡我們</a>
+    <a class="nav-pill" href="contact.html">聯絡我們</a>
   </div>
-  <button class="mobile-menu-btn" onclick="showPage('products')">☰</button>
+  <a class="mobile-menu-btn" href="products.html">☰</a>
 </nav>
 
-<main id="home" class="page active">
-
+<main>
   <section class="hero">
     <div class="hero-content">
       <div class="eyebrow">Crafts that keep living</div>
@@ -857,8 +33,8 @@ input,select,textarea {{
         每一次支持，都讓一門技藝重新被需要。
       </p>
       <div class="btn-row">
-        <button class="btn white" onclick="showPage('products')">探索共養商品</button>
-        <button class="btn ghost-white" onclick="goHomeSection('story')">閱讀品牌故事</button>
+        <a class="btn white" href="products.html">探索共養商品</a>
+        <a class="btn ghost-white" href="#story">閱讀品牌故事</a>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -870,17 +46,12 @@ input,select,textarea {{
   <section id="story">
     <div class="two-col">
       <div class="image-card reveal">
-        品牌故事圖片位置<br>
-        建議檔名：images/story.jpg
+        <img src="images/story.jpg" alt="品牌故事圖片" onerror="this.remove(); this.parentElement.innerHTML='品牌故事圖片位置<br>檔名：images/story.jpg';">
       </div>
       <div class="text-panel reveal">
         <p class="lead-quote">「我們想做的不是保存一件老東西，而是讓一門技藝重新被需要。」</p>
-        <p>
-          許多台灣傳統技藝並不是因為沒有價值而消失，而是逐漸失去被日常使用、被市場理解、被下一代學習的機會。
-        </p>
-        <p>
-          記藝共養所希望成為職人與消費者之間的橋樑。我們讓商品不只是商品，而是帶著故事、工序、職人生命與復甦進度的文化入口。
-        </p>
+        <p>許多台灣傳統技藝並不是因為沒有價值而消失，而是逐漸失去被日常使用、被市場理解、被下一代學習的機會。</p>
+        <p>記藝共養所希望成為職人與消費者之間的橋樑。我們讓商品不只是商品，而是帶著故事、工序、職人生命與復甦進度的文化入口。</p>
       </div>
     </div>
   </section>
@@ -893,21 +64,9 @@ input,select,textarea {{
     </div>
 
     <div class="cards">
-      <div class="card reveal">
-        <div class="card-num">1</div>
-        <h3>市場需求被取代</h3>
-        <p>機械量產與現代生活用品逐漸取代手工技藝，讓許多職人的作品失去穩定市場。</p>
-      </div>
-      <div class="card reveal">
-        <div class="card-num">2</div>
-        <h3>故事沒有被轉譯</h3>
-        <p>職人懂技藝，卻未必有能力處理品牌包裝、數位內容、外語介紹與社群行銷。</p>
-      </div>
-      <div class="card reveal">
-        <div class="card-num">3</div>
-        <h3>支持容易中斷</h3>
-        <p>一般文創商品多是一次性消費，活動也常在結束後停止互動，難以形成長期支持。</p>
-      </div>
+      <div class="card reveal"><div class="card-num">1</div><h3>市場需求被取代</h3><p>機械量產與現代生活用品逐漸取代手工技藝，讓許多職人的作品失去穩定市場。</p></div>
+      <div class="card reveal"><div class="card-num">2</div><h3>故事沒有被轉譯</h3><p>職人懂技藝，卻未必有能力處理品牌包裝、數位內容、外語介紹與社群行銷。</p></div>
+      <div class="card reveal"><div class="card-num">3</div><h3>支持容易中斷</h3><p>一般文創商品多是一次性消費，活動也常在結束後停止互動，難以形成長期支持。</p></div>
     </div>
   </section>
 
@@ -919,21 +78,9 @@ input,select,textarea {{
     </div>
 
     <div class="cards">
-      <div class="card reveal">
-        <div class="card-num">1</div>
-        <h3>具象技藝商品</h3>
-        <p>將油紙傘、竹編、春仔花、花磚、木雕等技藝轉化為可收藏、可使用的生活物件。</p>
-      </div>
-      <div class="card reveal">
-        <div class="card-num">2</div>
-        <h3>意象技藝信物</h3>
-        <p>將布袋戲、傳統音樂、祭典等無形文化轉化為 NFC 手環、收藏卡、票卡或徽章。</p>
-      </div>
-      <div class="card reveal">
-        <div class="card-num">3</div>
-        <h3>延伸共養體驗</h3>
-        <p>透過工作坊、地方導覽、師傅見面會與年度會員，將一次支持延伸為長期參與。</p>
-      </div>
+      <div class="card reveal"><div class="card-num">1</div><h3>具象技藝商品</h3><p>將油紙傘、竹編、春仔花、花磚、木雕等技藝轉化為可收藏、可使用的生活物件。</p></div>
+      <div class="card reveal"><div class="card-num">2</div><h3>意象技藝信物</h3><p>將布袋戲、傳統音樂、祭典等無形文化轉化為 NFC 手環、收藏卡、票卡或徽章。</p></div>
+      <div class="card reveal"><div class="card-num">3</div><h3>延伸共養體驗</h3><p>透過工作坊、地方導覽、師傅見面會與年度會員，將一次支持延伸為長期參與。</p></div>
     </div>
   </section>
 
@@ -941,7 +88,7 @@ input,select,textarea {{
     <div class="showcase">
       <div class="phone reveal">
         <div class="screen">
-          <div class="screen-photo">技藝照片位置<br>images/nfc-demo.jpg</div>
+          <div class="screen-photo"><img src="images/nfc-demo.jpg" alt="NFC 示意圖" onerror="this.remove(); this.parentElement.innerHTML='技藝照片位置<br>images/nfc-demo.jpg';"></div>
           <h3>美濃油紙傘｜數位技藝履歷</h3>
           <div class="info-row">技藝故事：從日常器物到文化祝福</div>
           <div class="info-row">職人介紹：第三代油紙傘師傅</div>
@@ -949,21 +96,17 @@ input,select,textarea {{
           <div class="info-row">資金用途：職人收入、工序紀錄、學徒培訓</div>
           <div class="info-row">復甦進度：目前 62%</div>
           <div class="info-row">最新消息：工作坊籌備中</div>
-          <div class="langs">
-            <span>中文</span><span>台語</span><span>客語</span><span>English</span><span>日本語</span>
-          </div>
+          <div class="langs"><span>中文</span><span>台語</span><span>客語</span><span>English</span><span>日本語</span></div>
         </div>
       </div>
 
       <div class="reveal">
         <div class="section-head">
           <div class="label">Digital craft passport</div>
-          <h2>NFC 不是重點，技藝履歷才是。</h2>
-          <p>
-            支持者只要用手機感應 NFC，就能進入專屬頁面，看見技藝故事、職人介紹、製作工序、資金用途、傳承進度與活動通知。
-          </p>
+          <h2>NFC 是入口，技藝履歷才是核心。</h2>
+          <p>支持者只要用手機感應 NFC，就能進入專屬頁面，看見技藝故事、職人介紹、製作工序、資金用途、傳承進度與活動通知。</p>
         </div>
-        <button class="btn dark" onclick="showPage('nfc')">查看履歷範例</button>
+        <a class="btn dark" href="nfc.html">查看履歷範例</a>
       </div>
     </div>
   </section>
@@ -977,33 +120,24 @@ input,select,textarea {{
 
     <div class="featured-crafts">
       <div class="feature-large reveal">
-        <div class="feature-img">圖片位置：images/umbrella.jpg</div>
-        <div class="feature-content">
-          <h3>美濃油紙傘</h3>
-          <p>從日常器物到文化祝福，支持工序紀錄與職人收入。</p>
-        </div>
+        <div class="feature-img"><img src="images/umbrella.jpg" alt="美濃油紙傘" onerror="this.remove(); this.parentElement.innerHTML='圖片位置：images/umbrella.jpg';"></div>
+        <div class="feature-content"><h3>美濃油紙傘</h3><p>從日常器物到文化祝福，支持工序紀錄與職人收入。</p></div>
       </div>
 
       <div class="feature-small-wrap">
         <div class="feature-small reveal">
-          <div class="feature-img">圖片位置：images/bamboo.jpg</div>
-          <div class="feature-content">
-            <h3>竹籐編織</h3>
-            <p>讓編織工序重新回到日常生活。</p>
-          </div>
+          <div class="feature-img"><img src="images/bamboo.jpg" alt="竹籐編織" onerror="this.remove(); this.parentElement.innerHTML='圖片位置：images/bamboo.jpg';"></div>
+          <div class="feature-content"><h3>竹籐編織</h3><p>讓編織工序重新回到日常生活。</p></div>
         </div>
         <div class="feature-small reveal">
-          <div class="feature-img">圖片位置：images/chunzihua.jpg</div>
-          <div class="feature-content">
-            <h3>春仔花</h3>
-            <p>讓婚嫁祝福與女性手藝被年輕世代看見。</p>
-          </div>
+          <div class="feature-img"><img src="images/chunzihua.jpg" alt="春仔花" onerror="this.remove(); this.parentElement.innerHTML='圖片位置：images/chunzihua.jpg';"></div>
+          <div class="feature-content"><h3>春仔花</h3><p>讓婚嫁祝福與女性手藝被年輕世代看見。</p></div>
         </div>
       </div>
     </div>
 
     <div style="text-align:center;margin-top:40px;">
-      <button class="btn dark" onclick="showPage('products')">進入商品頁</button>
+      <a class="btn dark" href="products.html">進入商品頁</a>
     </div>
   </section>
 
@@ -1013,7 +147,6 @@ input,select,textarea {{
       <h2>讓支持被看見，也讓技藝被需要。</h2>
       <p>以下數字可依問卷、網站測試與日後實際合作結果調整。</p>
     </div>
-
     <div class="stats">
       <div class="stat reveal"><strong>3</strong><span>示範技藝</span></div>
       <div class="stat reveal"><strong>126</strong><span>潛在共養者</span></div>
@@ -1022,245 +155,11 @@ input,select,textarea {{
     </div>
   </section>
 </main>
-
-<section id="products" class="page page-content">
-  <a class="back-link" onclick="showPage('home')">← 回首頁</a>
-  <div class="section-head">
-    <div class="label">Craft collection</div>
-    <h2>共養商品</h2>
-    <p>選擇一項技藝，進入詳細頁看故事、共養進度、資金用途與 NFC 內容。</p>
-  </div>
-
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-img">商品圖片位置<br>images/umbrella.jpg</div>
-      <h3>美濃油紙傘共養組</h3>
-      <p>支持油紙傘職人工序紀錄、數位履歷建置與後續工作坊推廣。</p>
-      <div class="price">NT$10,000</div>
-      <div class="progress"><span style="width:62%"></span></div>
-      <div class="meta"><span>共養進度 62%</span><span>限量 20 組</span></div>
-      <button class="btn dark" onclick="showPage('product-umbrella')">查看詳情</button>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">商品圖片位置<br>images/bamboo.jpg</div>
-      <h3>竹籐編織生活小物</h3>
-      <p>將傳統竹籐編織轉化為杯墊、吊飾或生活用品，讓技藝回到日常。</p>
-      <div class="price">NT$333</div>
-      <div class="progress"><span style="width:45%"></span></div>
-      <div class="meta"><span>共養進度 45%</span><span>限量 100 件</span></div>
-      <button class="btn dark" onclick="showPage('product-bamboo')">查看詳情</button>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">商品圖片位置<br>images/chunzihua.jpg</div>
-      <h3>春仔花共養飾品</h3>
-      <p>讓傳統婚嫁祝福技藝，以現代飾品與收藏形式重新進入生活。</p>
-      <div class="price">NT$2,000</div>
-      <div class="progress"><span style="width:78%"></span></div>
-      <div class="meta"><span>共養進度 78%</span><span>限量 35 件</span></div>
-      <button class="btn dark" onclick="showPage('product-chunzihua')">查看詳情</button>
-    </div>
-  </div>
-</section>
-
-<section id="product-umbrella" class="page page-content">
-  <a class="back-link" onclick="showPage('products')">← 回商品頁</a>
-  <div class="detail-hero">
-    <div class="detail-image">商品詳情主圖位置<br>images/umbrella-detail.jpg</div>
-    <div class="detail-info">
-      <div class="label">Craft detail</div>
-      <h1>美濃油紙傘共養組</h1>
-      <p>油紙傘承載客家文化中的圓滿、祝福與地方記憶。透過共養組，我們支持職人工序紀錄、數位履歷建置與未來工作坊推廣。</p>
-      <div class="price">NT$10,000</div>
-      <div class="progress"><span style="width:62%"></span></div>
-      <div class="meta"><span>共養進度 62%</span><span>限量 20 組</span></div>
-      <button class="btn dark" onclick="showPage('contact')">加入共養</button>
-    </div>
-  </div>
-  <div class="info-grid">
-    <div class="card"><h3>商品內容</h3><p>油紙傘作品、NFC 數位履歷、共養者登錄、技藝進度更新。</p></div>
-    <div class="card"><h3>資金用途</h3><p>職人收入、材料成本、製作工序紀錄、故事頁維護與工作坊籌備。</p></div>
-    <div class="card"><h3>NFC 可看見</h3><p>職人故事、製作流程、油紙傘文化意義、共養進度與活動通知。</p></div>
-  </div>
-</section>
-
-<section id="product-bamboo" class="page page-content">
-  <a class="back-link" onclick="showPage('products')">← 回商品頁</a>
-  <div class="detail-hero">
-    <div class="detail-image">商品詳情主圖位置<br>images/bamboo-detail.jpg</div>
-    <div class="detail-info">
-      <div class="label">Craft detail</div>
-      <h1>竹籐編織生活小物</h1>
-      <p>竹籐編織從取材、削竹、編織到成形，每一步都需要經驗與手感。我們將技藝轉化為日常小物，讓傳統工藝重新回到生活使用情境。</p>
-      <div class="price">NT$333</div>
-      <div class="progress"><span style="width:45%"></span></div>
-      <div class="meta"><span>共養進度 45%</span><span>限量 100 件</span></div>
-      <button class="btn dark" onclick="showPage('contact')">加入共養</button>
-    </div>
-  </div>
-  <div class="info-grid">
-    <div class="card"><h3>商品內容</h3><p>竹籐編織杯墊／吊飾／生活小物、NFC 數位履歷、共養者更新通知。</p></div>
-    <div class="card"><h3>資金用途</h3><p>材料費、職人製作費、影像紀錄、數位頁面製作與後續體驗活動。</p></div>
-    <div class="card"><h3>NFC 可看見</h3><p>竹材處理、編織步驟、職人訪談、共養成果與工作坊消息。</p></div>
-  </div>
-</section>
-
-<section id="product-chunzihua" class="page page-content">
-  <a class="back-link" onclick="showPage('products')">← 回商品頁</a>
-  <div class="detail-hero">
-    <div class="detail-image">商品詳情主圖位置<br>images/chunzihua-detail.jpg</div>
-    <div class="detail-info">
-      <div class="label">Craft detail</div>
-      <h1>春仔花共養飾品</h1>
-      <p>春仔花曾是婚嫁文化中的祝福象徵，代表喜氣、家族情感與女性手藝。我們希望透過現代飾品與收藏形式，讓這項技藝被年輕世代理解與保存。</p>
-      <div class="price">NT$2,000</div>
-      <div class="progress"><span style="width:78%"></span></div>
-      <div class="meta"><span>共養進度 78%</span><span>限量 35 件</span></div>
-      <button class="btn dark" onclick="showPage('contact')">加入共養</button>
-    </div>
-  </div>
-  <div class="info-grid">
-    <div class="card"><h3>商品內容</h3><p>春仔花飾品、作品編號、NFC 數位履歷、共養者登錄與進度通知。</p></div>
-    <div class="card"><h3>資金用途</h3><p>職人製作收入、傳統工序紀錄、現代設計轉譯與教學推廣。</p></div>
-    <div class="card"><h3>NFC 可看見</h3><p>春仔花文化故事、製作過程、職人訪談、共養進度與活動資訊。</p></div>
-  </div>
-</section>
-
-<section id="plans" class="page page-content">
-  <a class="back-link" onclick="showPage('home')">← 回首頁</a>
-  <div class="section-head">
-    <div class="label">Support plans</div>
-    <h2>共養方案</h2>
-    <p>依不同支持能力與參與深度，選擇合適的共養方式。</p>
-  </div>
-
-  <div class="plan-grid">
-    <div class="plan">
-      <h3>青芽共養</h3>
-      <div class="amount">300+</div>
-      <ul><li>數位感謝卡</li><li>技藝復甦進度更新</li><li>活動優先通知</li></ul>
-      <button class="btn dark">選擇方案</button>
-    </div>
-    <div class="plan">
-      <h3>匠心共養</h3>
-      <div class="amount">1,000+</div>
-      <ul><li>共養商品一件</li><li>NFC 數位履歷</li><li>共養者姓名登錄</li></ul>
-      <button class="btn dark">選擇方案</button>
-    </div>
-    <div class="plan">
-      <h3>傳承共養</h3>
-      <div class="amount">3,000+</div>
-      <ul><li>限定作品或套組</li><li>工作坊優惠</li><li>年度技藝狀態報告</li></ul>
-      <button class="btn dark">選擇方案</button>
-    </div>
-  </div>
-</section>
-
-<section id="nfc" class="page page-content">
-  <a class="back-link" onclick="showPage('home')">← 回首頁</a>
-  <div class="showcase">
-    <div class="phone">
-      <div class="screen">
-        <div class="screen-photo">技藝圖片位置<br>images/chunzihua-detail.jpg</div>
-        <h3>春仔花｜數位技藝履歷</h3>
-        <div class="info-row">技藝故事：婚嫁祝福與女性手藝</div>
-        <div class="info-row">職人介紹：春仔花工藝保存者</div>
-        <div class="info-row">製作工序：纏線、折花、組裝</div>
-        <div class="info-row">資金用途：職人收入、教學紀錄</div>
-        <div class="info-row">復甦進度：78%</div>
-        <div class="info-row">最新消息：共養者工作坊籌備中</div>
-      </div>
-    </div>
-
-    <div>
-      <div class="section-head">
-        <div class="label">NFC demo</div>
-        <h2>NFC 是入口，技藝履歷才是核心。</h2>
-        <p>商品不是買完就結束，而是成為持續更新的文化入口。</p>
-      </div>
-      <div class="image-card">NFC 感應示意圖片位置<br>images/nfc-demo.jpg</div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="page page-content">
-  <a class="back-link" onclick="showPage('home')">← 回首頁</a>
-  <div class="section-head">
-    <div class="label">Contact</div>
-    <h2>一起讓技藝重新被需要。</h2>
-    <p>職人合作、企業 ESG、商品共養、活動邀約，都可以透過此表單與我們聯繫。</p>
-  </div>
-
-  <div class="form-box">
-    <input type="text" placeholder="您的姓名">
-    <input type="email" placeholder="Email">
-    <select>
-      <option>我想詢問的項目</option>
-      <option>成為共養者</option>
-      <option>職人合作</option>
-      <option>企業 ESG 合作</option>
-      <option>活動邀約</option>
-    </select>
-    <textarea rows="5" placeholder="想對我們說的話"></textarea>
-    <button class="btn dark">送出</button>
-  </div>
-</section>
-
 <footer class="footer">
   <h2 class="serif">記藝共養所</h2>
   <p>讓每一次共養，都成為文化延續的力量。</p>
   <p>免責聲明：本網站目前為提案展示與市場驗證用途，部分圖片、商品與合作內容為概念示意，尚未代表正式販售或正式合作。</p>
 </footer>
-
-<script>
-function showPage(id){{
-  document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  window.scrollTo({{ top:0, behavior:"smooth" }});
-  updateNav();
-  setTimeout(observeReveal, 80);
-}}
-
-function goHomeSection(sectionId){{
-  showPage("home");
-  setTimeout(() => {{
-    document.getElementById(sectionId).scrollIntoView({{ behavior:"smooth" }});
-  }}, 120);
-}}
-
-function updateNav(){{
-  const nav = document.getElementById("navbar");
-  if(window.scrollY > 60 || !document.getElementById("home").classList.contains("active")){{
-    nav.classList.add("scrolled");
-  }}else{{
-    nav.classList.remove("scrolled");
-  }}
-}}
-
-window.addEventListener("scroll", updateNav);
-
-function observeReveal(){{
-  const reveals = document.querySelectorAll(".reveal");
-  const observer = new IntersectionObserver((entries) => {{
-    entries.forEach(entry => {{
-      if(entry.isIntersecting){{
-        entry.target.classList.add("show");
-      }}
-    }});
-  }}, {{ threshold:.14 }});
-
-  reveals.forEach(el => observer.observe(el));
-}}
-
-observeReveal();
-updateNav();
-</script>
-
+<script src="js/script.js"></script>
 </body>
 </html>
-'''
-
-out = Path("/mnt/data/jiyi_gongyang_redesign.html")
-out.write_text(html, encoding="utf-8")
-out
