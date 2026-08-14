@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>美濃油紙傘共養組｜記藝共養所</title>
+<title>美濃油紙傘購買頁｜記藝共養所</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260708" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<nav class="navbar" id="navbar">
+<nav class="navbar solid" id="navbar">
   <a class="logo" href="index.html">記藝共養所</a>
   <div class="nav-center">
     <a href="index.html#story">品牌故事</a>
@@ -25,29 +25,59 @@
 
 <main class="page-content">
   <a class="back-link" href="products.html">← 回商品頁</a>
-  <div class="detail-hero">
+  <section class="buy-hero">
     <div class="detail-image"><img src="images/umbrella-detail.jpg" alt="美濃油紙傘共養組" onerror="this.remove(); this.parentElement.innerHTML='商品詳情主圖位置<br>images/umbrella-detail.jpg';"></div>
-    <div class="detail-info">
-      <div class="label">Craft detail</div>
+    <div class="buy-panel">
+      <div class="label">Purchase page</div>
       <h1>美濃油紙傘共養組</h1>
-      <p>油紙傘承載客家文化中的圓滿、祝福與地方記憶。透過共養組，我們支持職人工序紀錄、數位履歷建置與未來工作坊推廣。</p>
-      <div class="price">NT$10,000</div>
-      <div class="progress"><span style="width:62%"></span></div>
-      <div class="meta"><span>共養進度 62%</span><span>限量 20 組</span></div>
-      <a class="btn dark" href="contact.html">加入共養</a>
+      <p>這是一件可以被使用、收藏，也能打開後續故事的油紙傘。購買後，你會收到含 NFC 入口的作品；手機觸碰後，才能進入專屬共養頁，看見技藝復甦任務、日常紀錄與推廣成果。</p>
+      <div class="buy-price">NT$10,000</div>
+      <div class="buy-actions">
+        <a class="btn dark" href="contact.html">我要資助購買</a>
+        <a class="btn outline" href="#story">先看商品故事</a>
+      </div>
+      <p class="unlock-note">共養進度條不會顯示在購買頁，會在收到商品並感應 NFC 後解鎖。</p>
     </div>
-  </div>
-  <div class="info-grid">
-    <div class="card"><h3>商品內容</h3><p>油紙傘作品、NFC 數位履歷、共養者登錄、技藝進度更新。</p></div>
-    <div class="card"><h3>資金用途</h3><p>職人收入、材料成本、製作工序紀錄、故事頁維護與工作坊籌備。</p></div>
-    <div class="card"><h3>NFC 可看見</h3><p>職人故事、製作流程、油紙傘文化意義、共養進度與活動通知。</p></div>
-  </div>
+  </section>
+
+  <section id="story">
+    <div class="two-col">
+      <div class="text-panel">
+        <p class="lead-quote">油紙傘撐開的不只是傘面，也是一段地方手藝被重新看見的機會。</p>
+        <p>美濃油紙傘過去是日常器物，也是婚嫁、祝福與團圓的象徵。從削竹、製傘骨、裱紙、上油到彩繪，每一道工序都需要時間、手感與經驗。</p>
+        <p>記藝共養所把購買轉化為支持系統：你買到的是一件作品，也支持我們把工序拍攝下來、整理成數位履歷，並讓更多人透過工作坊和展覽重新接觸這門技藝。</p>
+      </div>
+      <div class="image-card"><img src="images/umbrella.jpg" alt="油紙傘故事" onerror="this.remove(); this.parentElement.innerHTML='油紙傘故事圖片位置<br>images/umbrella.jpg';"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head center">
+      <div class="label">What you support</div>
+      <h2>你資助的不只是商品，而是讓技藝繼續被需要。</h2>
+      <p>購買後的 NFC 專屬頁會持續更新任務進度；購買頁則保持單純，讓第一次接觸的人先理解作品與支持方式。</p>
+    </div>
+    <div class="info-grid">
+      <div class="card"><h3>商品內容</h3><p>美濃油紙傘作品一件、NFC 數位履歷入口、共養者感謝登錄、後續更新觀看資格。</p></div>
+      <div class="card"><h3>資助用途</h3><p>職人收入、材料成本、工序影像紀錄、故事撰寫、工作坊籌備與展覽推廣。</p></div>
+      <div class="card"><h3>購買後解鎖</h3><p>手機感應油紙傘 NFC 後，可看見共養進度條、任務紀錄、日常故事與網紅推廣影片連結。</p></div>
+    </div>
+  </section>
+
+  <section class="dark-band">
+    <div class="section-head">
+      <div class="label">Founding idea</div>
+      <h2>記憶不是被放進玻璃櫃保存，而是被重新帶回生活。</h2>
+      <p>記藝共養所相信，傳統技藝要延續，不只需要被介紹，更需要被購買、被使用、被再次分享。當一件作品進入生活，它就有機會替技藝開啟下一段路。</p>
+    </div>
+  </section>
 </main>
+
 <footer class="footer">
   <h2 class="serif">記藝共養所</h2>
   <p>讓每一次共養，都成為文化延續的力量。</p>
   <p>免責聲明：本網站目前為提案展示與市場驗證用途，部分圖片、商品與合作內容為概念示意，尚未代表正式販售或正式合作。</p>
 </footer>
-<script src="script.js?v=20260708"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

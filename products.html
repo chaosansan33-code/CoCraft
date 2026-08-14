@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>共養商品｜記藝共養所</title>
+<title>共養商品購買｜記藝共養所</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260708" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<nav class="navbar" id="navbar">
+<nav class="navbar solid" id="navbar">
   <a class="logo" href="index.html">記藝共養所</a>
   <div class="nav-center">
     <a href="index.html#story">品牌故事</a>
@@ -24,49 +24,66 @@
 </nav>
 
 <main class="page-content">
-  <div class="section-head">
-    <div class="label">Craft collection</div>
-    <h1>共養商品</h1>
-    <p>選擇一項技藝，進入詳細頁看故事、共養進度、資金用途與 NFC 內容。</p>
-  </div>
-
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-img"><img src="images/umbrella.jpg" alt="美濃油紙傘" onerror="this.remove(); this.parentElement.innerHTML='商品圖片位置<br>images/umbrella.jpg';"></div>
-      <h3>美濃油紙傘共養組</h3>
-      <p>支持油紙傘職人工序紀錄、數位履歷建置與後續工作坊推廣。</p>
-      <div class="price">NT$10,000</div>
-      <div class="progress"><span style="width:62%"></span></div>
-      <div class="meta"><span>共養進度 62%</span><span>限量 20 組</span></div>
-      <a class="btn dark" href="product-umbrella.html">查看詳情</a>
+  <section class="purchase-hero">
+    <div>
+      <div class="label">Craft shop</div>
+      <h1>先帶走一件作品，<br>再用 NFC 打開它正在延續的故事。</h1>
+      <p>購買頁只呈現商品故事、資助價格與內容物。共養進度、日常更新與推廣影片，會在你收到商品後，透過手機感應物件中的 NFC 才解鎖。</p>
     </div>
-
-    <div class="product-card">
-      <div class="product-img"><img src="images/bamboo.jpg" alt="竹籐編織" onerror="this.remove(); this.parentElement.innerHTML='商品圖片位置<br>images/bamboo.jpg';"></div>
-      <h3>竹籐編織生活小物</h3>
-      <p>將傳統竹籐編織轉化為杯墊、吊飾或生活用品，讓技藝回到日常。</p>
-      <div class="price">NT$333</div>
-      <div class="progress"><span style="width:45%"></span></div>
-      <div class="meta"><span>共養進度 45%</span><span>限量 100 件</span></div>
-      <a class="btn dark" href="product-bamboo.html">查看詳情</a>
+    <div class="purchase-note">
+      <b>購買後才看得到共養條</b>
+      <p>每件共養商品都會植入或附上 NFC 入口。它不是一般商品標籤，而是一張只屬於支持者的數位技藝履歷。</p>
     </div>
+  </section>
 
-    <div class="product-card">
-      <div class="product-img"><img src="images/chunzihua.jpg" alt="春仔花" onerror="this.remove(); this.parentElement.innerHTML='商品圖片位置<br>images/chunzihua.jpg';"></div>
-      <h3>春仔花共養飾品</h3>
-      <p>讓傳統婚嫁祝福技藝，以現代飾品與收藏形式重新進入生活。</p>
-      <div class="price">NT$2,000</div>
-      <div class="progress"><span style="width:78%"></span></div>
-      <div class="meta"><span>共養進度 78%</span><span>限量 35 件</span></div>
-      <a class="btn dark" href="product-chunzihua.html">查看詳情</a>
-    </div>
-  </div>
+  <section class="shop-layout">
+    <article class="shop-card featured">
+      <div class="shop-img"><img src="images/umbrella.jpg" alt="美濃油紙傘" onerror="this.remove(); this.parentElement.innerHTML='商品圖片位置<br>images/umbrella.jpg';"></div>
+      <div class="shop-body">
+        <span class="tag">NFC 共養商品</span>
+        <h2>美濃油紙傘共養組</h2>
+        <p>一把油紙傘，不只是遮雨的器物，也承載客家聚落裡「圓滿」與「祝福」的文化意義。購買這件作品，等於支持職人工序紀錄、青年助教培訓與未來手作坊籌備。</p>
+        <div class="purchase-info">
+          <div><small>資助價格</small><strong>NT$10,000</strong></div>
+          <div><small>內容物</small><strong>油紙傘作品＋NFC 履歷</strong></div>
+        </div>
+        <a class="btn dark" href="product-umbrella.html">進入購買頁</a>
+      </div>
+    </article>
+
+    <article class="shop-card">
+      <div class="shop-img"><img src="images/bamboo.jpg" alt="竹籐編織" onerror="this.remove(); this.parentElement.innerHTML='商品圖片位置<br>images/bamboo.jpg';"></div>
+      <div class="shop-body">
+        <span class="tag">生活小物</span>
+        <h3>竹籐編織生活小物</h3>
+        <p>讓編織回到日常，支持職人把竹材處理、起底、收邊與紋路變化完整記錄下來。</p>
+        <div class="purchase-info compact">
+          <div><small>資助價格</small><strong>NT$333</strong></div>
+        </div>
+        <a class="btn outline" href="product-bamboo.html">查看商品</a>
+      </div>
+    </article>
+
+    <article class="shop-card">
+      <div class="shop-img"><img src="images/chunzihua.jpg" alt="春仔花" onerror="this.remove(); this.parentElement.innerHTML='商品圖片位置<br>images/chunzihua.jpg';"></div>
+      <div class="shop-body">
+        <span class="tag">祝福飾品</span>
+        <h3>春仔花共養飾品</h3>
+        <p>把婚嫁祝福與女性手藝轉譯成可佩戴的信物，讓傳統技藝被年輕世代看見。</p>
+        <div class="purchase-info compact">
+          <div><small>資助價格</small><strong>NT$2,000</strong></div>
+        </div>
+        <a class="btn outline" href="product-chunzihua.html">查看商品</a>
+      </div>
+    </article>
+  </section>
 </main>
+
 <footer class="footer">
   <h2 class="serif">記藝共養所</h2>
   <p>讓每一次共養，都成為文化延續的力量。</p>
   <p>免責聲明：本網站目前為提案展示與市場驗證用途，部分圖片、商品與合作內容為概念示意，尚未代表正式販售或正式合作。</p>
 </footer>
-<script src="script.js?v=20260708"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

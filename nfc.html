@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>數位技藝履歷｜記藝共養所</title>
+<title>NFC 共養履歷｜美濃油紙傘</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260708" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<nav class="navbar" id="navbar">
+<nav class="navbar solid" id="navbar">
   <a class="logo" href="index.html">記藝共養所</a>
   <div class="nav-center">
     <a href="index.html#story">品牌故事</a>
@@ -23,36 +23,96 @@
   <a class="mobile-menu-btn" href="products.html">☰</a>
 </nav>
 
-<main class="page-content">
-  <div class="showcase">
-    <div class="phone">
-      <div class="screen">
-        <div class="screen-photo"><img src="images/chunzihua-detail.jpg" alt="春仔花" onerror="this.remove(); this.parentElement.innerHTML='技藝圖片位置<br>images/chunzihua-detail.jpg';"></div>
-        <h3>春仔花｜數位技藝履歷</h3>
-        <div class="info-row">技藝故事：婚嫁祝福與女性手藝</div>
-        <div class="info-row">職人介紹：春仔花工藝保存者</div>
-        <div class="info-row">製作工序：纏線、折花、組裝</div>
-        <div class="info-row">資金用途：職人收入、教學紀錄</div>
-        <div class="info-row">復甦進度：78%</div>
-        <div class="info-row">最新消息：共養者工作坊籌備中</div>
-      </div>
-    </div>
-
+<main class="page-content nfc-page">
+  <section class="nfc-unlocked">
     <div>
-      <div class="section-head">
-        <div class="label">NFC demo</div>
-        <h1>NFC 是入口，技藝履歷才是核心。</h1>
-        <p>商品不是買完就結束，而是成為持續更新的文化入口。</p>
-      </div>
-      <div class="image-card"><img src="images/nfc-demo.jpg" alt="NFC 感應示意圖" onerror="this.remove(); this.parentElement.innerHTML='NFC 感應示意圖片位置<br>images/nfc-demo.jpg';"></div>
+      <div class="label">NFC unlocked</div>
+      <h1>美濃油紙傘｜共養進度履歷</h1>
+      <p>你正在觀看的是購買後才解鎖的 NFC 專屬頁。這裡會持續更新油紙傘技藝的復甦任務、職人日常、活動紀錄與推廣影片。</p>
     </div>
-  </div>
+    <div class="nfc-badge">
+      <span>Supporter access</span>
+      <strong>NFC 已解鎖</strong>
+    </div>
+  </section>
+
+  <section class="progress-section">
+    <div class="section-head">
+      <div class="label">Revival mission</div>
+      <h2>一條共養進度條，記錄技藝重新被需要的路。</h2>
+      <p>目前進度依照任務完成狀態更新。每完成一個階段，油紙傘技藝就多一個被看見、被學習、被使用的機會。</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-top">
+        <div>
+          <small>目前共養進度</small>
+          <strong>40%</strong>
+        </div>
+        <span>任務 2 / 5 進行中</span>
+      </div>
+      <div class="progress large"><span style="width:40%"></span></div>
+      <div class="mission-list">
+        <div class="mission done"><b>01</b><p>完成 5 場油紙傘手作坊</p><span>已完成</span></div>
+        <div class="mission active"><b>02</b><p>完成 5 場地方展覽</p><span>進行中：2 / 5</span></div>
+        <div class="mission"><b>03</b><p>拍攝 3 支職人工序紀錄短片</p><span>待解鎖</span></div>
+        <div class="mission"><b>04</b><p>培訓 3 位青年助教</p><span>待解鎖</span></div>
+        <div class="mission"><b>05</b><p>建立年度巡迴共養計畫</p><span>待解鎖</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head center">
+      <div class="label">Daily stories</div>
+      <h2>共養者限定日常故事</h2>
+      <p>這些更新不是商品介紹，而是讓你看見支持如何慢慢變成行動。</p>
+    </div>
+    <div class="story-grid">
+      <article class="story-card">
+        <img src="images/gallery-01.jpg" alt="手作坊紀錄" onerror="this.remove();">
+        <div><span>2026.08</span><h3>第五場手作坊完成</h3><p>孩子們第一次看見竹骨如何撐開傘面，也在傘面上畫下自己的地方記憶。</p></div>
+      </article>
+      <article class="story-card">
+        <img src="images/gallery-04.jpg" alt="職人日常" onerror="this.remove();">
+        <div><span>2026.07</span><h3>職人修整傘骨的一天</h3><p>傘骨角度差一點，開合手感就會不同。這些細節，也是機械量產很難留下的部分。</p></div>
+      </article>
+      <article class="story-card">
+        <img src="images/gallery-06.jpg" alt="展覽現場" onerror="this.remove();">
+        <div><span>2026.06</span><h3>第一場地方小展開始</h3><p>我們把油紙傘的材料、工具與半成品帶到展場，讓觀眾理解一把傘背後的時間。</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="dark-band">
+    <div class="section-head">
+      <div class="label">Influencer videos</div>
+      <h2>推廣影片與社群紀錄</h2>
+      <p>當創作者、地方店家與共養者一起分享，技藝就不只留在展櫃裡，而是重新進入大家的生活圈。</p>
+    </div>
+    <div class="video-links">
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener"><b>地方創作者走訪美濃傘坊</b><span>YouTube 影片連結</span></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener"><b>生活風格網紅開箱 NFC 油紙傘</b><span>Instagram Reels 連結</span></a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener"><b>30 秒看懂油紙傘工序</b><span>TikTok 短影音連結</span></a>
+    </div>
+  </section>
+
+  <section>
+    <div class="two-col">
+      <div class="image-card"><img src="images/nfc-demo.jpg" alt="NFC 感應示意" onerror="this.remove(); this.parentElement.innerHTML='NFC 感應示意圖片位置<br>images/nfc-demo.jpg';"></div>
+      <div class="text-panel">
+        <p class="lead-quote">NFC 不是炫技，而是讓商品在被帶回家後，仍然和技藝保持連結。</p>
+        <p>購買前，你看到的是商品與故事；購買後，你用手機觸碰作品，就能看見共養任務如何推進。這讓支持不再停在付款那一刻，而是變成一段持續被更新的文化關係。</p>
+        <p>未來每一件共養物件都可以有自己的 NFC 履歷：油紙傘看工作坊與展覽，竹編看材料採集與編織工序，春仔花看祝福文化與教學紀錄。</p>
+      </div>
+    </div>
+  </section>
 </main>
+
 <footer class="footer">
   <h2 class="serif">記藝共養所</h2>
   <p>讓每一次共養，都成為文化延續的力量。</p>
   <p>免責聲明：本網站目前為提案展示與市場驗證用途，部分圖片、商品與合作內容為概念示意，尚未代表正式販售或正式合作。</p>
 </footer>
-<script src="script.js?v=20260708"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
