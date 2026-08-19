@@ -1,23 +1,21 @@
-# 記藝共養所 V4｜HTML 單檔保險版
-
-這一版是針對 GitHub 上「HTML 已更新、但 `css/style.css` 仍是舊版」造成的無排版問題製作。
+# 記藝共養所 V5｜HTML 單檔上傳版
 
 ## 上傳方式
 
 1. 解壓縮本檔案。
-2. 將六個 `.html` 檔案上傳到 GitHub repository 根目錄。
-3. 選擇覆蓋所有同名檔案。
-4. 不需要刪除或更動原有 `images/` 資料夾。
+2. 將全部 `.html` 檔案上傳到 GitHub repository 根目錄。
+3. 覆蓋所有同名檔案並確認 commit。
+4. 保留 GitHub 原有的 `images/` 資料夾。
 
-六個頁面已各自內嵌完整樣式與互動，不依賴 `css/style.css` 或 `js/script.js`。因此即使 GitHub 上的 CSS 有快取、路徑錯誤或沒有成功覆蓋，版面仍會正常顯示。
+本版每個 HTML 已內嵌完整 CSS、互動與五語翻譯，不依賴 GitHub 上的 `css/style.css` 或 `js/` 檔案，可避免舊樣式快取或漏傳檔案造成跑版。
 
-## 本包包含
+## 主要更新
 
-- `index.html`
-- `products.html`
-- `product-umbrella.html`
-- `product-bamboo.html`
-- `product-chunzihua.html`
-- `nfc.html`
+- `nfc.html`：模擬掃描 → 登入／註冊 → 歡迎訊息 → 操作手冊 → 完整共養履歷。
+- 全站上方導覽新增繁體中文、English、日本語、閩南語、客語選單，換頁後保留選擇。
+- 導覽名稱改為「掃描我的NFC」。
+- 商品詳情按鈕統一為「加入共養」及「探索更多作品」。
+- `plans.html` 先選方案，再進入新增的 `plan-detail.html` 閱讀完整內容；勾選確認後才能前往購買。
+- 首頁品牌故事圖片框依圖片比例縮合，不再留下多餘空白。
 
-圖片仍使用 repository 原有的 `images/` 路徑，不包含圖片檔。
+圖片仍由 repository 原有的 `images/` 路徑載入，本壓縮檔不包含圖片。

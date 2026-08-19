@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="竹編生活小物。"><title>竹編生活小物｜記藝共養所</title><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-<style data-jiyi-v4>
+<style data-jiyi-v5>
 
 :root{
   --cream:#F5EBDD;
@@ -314,6 +314,90 @@ input,select,textarea{
   section,.page-content{padding-left:6vw;padding-right:6vw}
   .two-col,.cards,.showcase,.stats,.featured-crafts,.product-grid,.detail-hero,.info-grid,.plan-grid{grid-template-columns:1fr}
   .image-card,.detail-image{min-height:380px}
+}
+
+/* =========================================================
+   V5 — multilingual controls, NFC journey and plan details
+   ========================================================= */
+.image-card{min-height:0!important;aspect-ratio:4/3!important;padding:0!important}
+.image-card img{display:block;width:100%;height:100%;object-fit:cover}
+
+.language-control{position:relative;display:flex;align-items:center;margin-right:10px}
+.navbar .logo{white-space:nowrap}
+.language-control::before{content:"文";position:absolute;left:13px;top:50%;transform:translateY(-50%);font-weight:900;font-size:.76rem;pointer-events:none}
+.language-control select{appearance:none;width:auto;margin:0;min-width:116px;height:44px;padding:0 32px 0 34px;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;font:800 .78rem/1 "Noto Sans TC",sans-serif;cursor:pointer}
+.language-control::after{content:"⌄";position:absolute;right:13px;top:48%;transform:translateY(-50%);font-weight:900;pointer-events:none}
+.market-v3 .navbar:not(.scrolled):not(.solid) .language-control select,.home-page .navbar:not(.scrolled) .language-control select{color:#fff}
+.navbar.solid .language-control select,.navbar.scrolled .language-control select{color:var(--v3-ink,#241712)}
+
+.nfc-v5{background:#f2eadf;color:var(--v3-ink)}
+.nfc-flow{padding-top:76px;min-height:100vh}
+.nfc-flow__progress{position:sticky;z-index:20;top:76px;display:flex;align-items:center;justify-content:center;padding:18px 24px;background:rgba(242,234,223,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--v3-line)}
+.nfc-flow__progress span{display:grid;place-items:center;width:34px;height:34px;border:1px solid #b8a895;border-radius:50%;font:800 .7rem/1 "Noto Sans TC",sans-serif;color:#8b786a;background:#f2eadf;transition:.3s}
+.nfc-flow__progress span.is-active{background:var(--v3-ink);border-color:var(--v3-ink);color:#fff}
+.nfc-flow__progress span.is-done{background:var(--v3-gold);border-color:var(--v3-gold);color:#fff}
+.nfc-flow__progress i{width:min(7vw,90px);height:1px;background:#cfc1b0}
+.nfc-stage{display:none;min-height:calc(100vh - 150px);padding:0!important;animation:nfcStageIn .55s ease both}
+.nfc-stage.is-active{display:grid}
+@keyframes nfcStageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.nfc-scan{grid-template-columns:.92fr 1.08fr;background:#17100d;color:#fff}
+.nfc-scan__copy{padding:clamp(50px,6vw,90px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.nfc-scan__copy h1{font-size:clamp(3.2rem,4.8vw,5.6rem);line-height:1.04;margin:18px 0 24px;letter-spacing:-.05em}
+.nfc-scan__copy>p:not(.mv3-kicker){max-width:700px;color:#d9cdc3;font-size:1.1rem}
+.nfc-scan .mv3-btn{border:1px solid #fff}
+.nfc-scan .mv3-btn:first-child{background:#fff;color:#1b120f}
+.nfc-scan .mv3-btn.line{background:transparent;color:#fff}
+.nfc-scene{position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 45%,#5f3427 0,#2c1b15 34%,#130d0b 70%)}
+.nfc-phone{position:relative;z-index:3;width:min(42%,270px);aspect-ratio:.52;border:8px solid #050505;border-radius:42px;background:#050505;box-shadow:0 45px 80px #0009;transform:rotate(8deg)}
+.nfc-phone::before{content:"";position:absolute;z-index:2;top:9px;left:50%;width:42%;height:22px;transform:translateX(-50%);border-radius:99px;background:#050505}
+.nfc-phone__screen{height:100%;border-radius:32px;background:linear-gradient(145deg,#f4eadc,#cfb896);color:#241712;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.nfc-phone__screen span{display:grid;place-items:center;width:82px;height:82px;border:1px solid #8e7054;border-radius:50%;font:800 1.1rem/1 sans-serif}
+.nfc-phone__screen b{font-size:1.35rem}.nfc-phone__screen small{letter-spacing:.1em}
+.nfc-tag{position:absolute;z-index:2;bottom:12%;right:18%;display:grid;place-items:center;width:145px;aspect-ratio:1.55;border-radius:12px;background:#ead9bd;color:#9a6b2e;font-weight:900;box-shadow:0 18px 60px #0008;transform:rotate(-9deg)}
+.nfc-rings{position:absolute;right:24%;bottom:25%;width:180px;height:180px}.nfc-rings i{position:absolute;inset:0;border:2px solid #e5b45a;border-radius:50%;animation:nfcPulse 2.2s infinite}.nfc-rings i:nth-child(2){animation-delay:.7s}.nfc-rings i:nth-child(3){animation-delay:1.4s}
+@keyframes nfcPulse{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(1.35)}}
+
+.nfc-account{grid-template-columns:1.05fr .95fr;background:#18110e}
+.nfc-auth-visual{position:relative;overflow:hidden;min-height:720px}.nfc-auth-visual img{width:100%;height:100%;object-fit:cover}.nfc-auth-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#170f0cdd 0,transparent 60%)}.nfc-auth-visual>div{position:absolute;z-index:2;left:8%;right:8%;bottom:8%;color:#fff}.nfc-auth-visual h2{font-size:clamp(2.4rem,4vw,4.8rem);line-height:1.1;margin:15px 0}
+.nfc-auth-card{align-self:center;width:min(620px,82%);margin:auto;padding:clamp(35px,5vw,70px);background:#fffaf3;box-shadow:var(--v3-shadow)}
+.nfc-auth-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--v3-line);margin-bottom:36px}.nfc-auth-tabs button{padding:16px;border:0;background:none;font-weight:900;color:#8d7a6c;cursor:pointer}.nfc-auth-tabs button.is-active{color:var(--v3-red);box-shadow:inset 0 -3px var(--v3-red)}
+.nfc-auth-form{display:none}.nfc-auth-form.is-active{display:grid;gap:18px}.nfc-auth-form h2{font-size:2.4rem;margin:0}.nfc-auth-form p{margin:0 0 10px;color:var(--v3-copy)}.nfc-auth-form label{display:grid;gap:8px;font-weight:800}.nfc-auth-form input{width:100%;height:52px;border:1px solid var(--v3-line);background:#fff;padding:0 15px;font:inherit}.nfc-auth-form .mv3-btn{width:100%;margin-top:10px}
+
+.nfc-welcome{place-content:center;text-align:center;padding:70px 24px;background:radial-gradient(circle at center,#efe0cc,#d8c0a2);min-height:calc(100vh - 150px)}
+.nfc-welcome__mark{margin:0 auto 28px;display:grid;place-items:center;width:110px;height:110px;border:1px solid #9c7655;border-radius:50%;font:900 3.2rem/1 serif}
+.nfc-welcome h1{max-width:950px;margin:12px auto 22px;font-size:clamp(3.2rem,6vw,7rem);line-height:1.05}.nfc-welcome>p:not(.mv3-kicker){max-width:760px;margin:0 auto 26px;color:var(--v3-copy);font-size:1.1rem}.nfc-welcome__id{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 34px;padding:16px 24px;border-block:1px solid #bba88e}.nfc-welcome__id span{font-size:.85rem;color:#705f52}
+
+.nfc-guide{grid-template-columns:.7fr 1.3fr;gap:70px;padding:clamp(65px,8vw,120px);align-items:center;background:#f4ece1}.nfc-guide__heading h1{font-size:clamp(3rem,5.2vw,6rem);line-height:1.07;margin:16px 0}.nfc-guide__heading p:last-child{color:var(--v3-copy)}.nfc-guide__grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--v3-line)}.nfc-guide__grid article{padding:clamp(28px,4vw,55px);min-height:240px;background:#fffaf4;border:1px solid var(--v3-line)}.nfc-guide__grid span{font:700 2rem/1 "Cormorant Garamond",serif;color:var(--v3-gold)}.nfc-guide__grid h3{font-size:1.7rem;margin:24px 0 10px}.nfc-guide__grid p{color:var(--v3-copy)}.nfc-guide>.mv3-btn{grid-column:2;justify-self:start}
+
+.nfc-passport-v5{display:none!important;background:#f3ebdf}.nfc-passport-v5.is-active{display:block!important}.passport-v5-hero{display:grid;grid-template-columns:.9fr 1.1fr;min-height:720px;background:#18110e;color:#fff}.passport-v5-hero>div{padding:clamp(60px,8vw,120px);align-self:center}.passport-v5-hero h1{font-size:clamp(4rem,7vw,8rem);line-height:1.02;margin:15px 0 30px}.passport-v5-hero p:not(.mv3-kicker){max-width:640px;color:#d8ccc2}.passport-v5-hero>img{width:100%;height:100%;object-fit:cover;min-height:720px}.passport-v5-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.passport-v5-tags span{padding:8px 12px;border:1px solid #ffffff55;border-radius:999px;font-size:.76rem}
+.passport-v5-nav{position:sticky;z-index:12;top:145px;display:flex;justify-content:center;gap:35px;padding:18px;background:#fffaf4eF;backdrop-filter:blur(12px);border-bottom:1px solid var(--v3-line)}.passport-v5-nav a{color:var(--v3-ink);font-weight:900}
+.passport-v5-section{width:min(1296px,90%);margin:0 auto;padding:clamp(80px,10vw,150px) 0}.passport-v5-section h2,.passport-v5-languages h2{font-size:clamp(3rem,5vw,6rem);line-height:1.08;margin:16px 0 28px}.passport-v5-section p{color:var(--v3-copy)}
+.passport-story{display:grid;grid-template-columns:.85fr 1.15fr;gap:7vw;align-items:center}.passport-story>img{width:100%;height:620px;object-fit:cover}.artisan-card{display:grid;grid-template-columns:1fr 1fr;background:#fffaf4;padding:0!important;width:min(1296px,90%);box-shadow:var(--v3-shadow)}.artisan-card>img{width:100%;height:100%;min-height:630px;object-fit:cover}.artisan-card>div{padding:clamp(50px,7vw,100px);align-self:center}.artisan-card blockquote{margin:30px 0;padding-left:22px;border-left:3px solid var(--v3-gold);font:700 1.65rem/1.55 "Noto Serif TC",serif}
+.passport-v5-heading{max-width:900px}.process-v5-list{margin-top:55px;border-top:1px solid var(--v3-line)}.process-v5-list article{display:grid;grid-template-columns:80px 1fr 130px;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid var(--v3-line)}.process-v5-list article>span{font:700 2.2rem/1 "Cormorant Garamond",serif;color:var(--v3-gold)}.process-v5-list h3{font-size:1.55rem;margin:0 0 6px}.process-v5-list p{margin:0}.process-v5-list time{font-size:.8rem;color:#8b786a}
+.progress-v5{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:start}.progress-v5-number{font:700 clamp(6rem,13vw,12rem)/.9 "Cormorant Garamond",serif;color:var(--v3-red)}.progress-v5 h2{font-size:clamp(2.5rem,4vw,4.6rem)}.progress-v5-bar{height:4px;margin-top:32px;background:#d9cbb9}.progress-v5-bar span{display:block;width:40%;height:100%;background:var(--v3-red)}.progress-v5 ol{list-style:none;padding:0;margin:0;border-top:1px solid var(--v3-line)}.progress-v5 li{display:grid;grid-template-columns:1fr auto;gap:20px;padding:30px 0;border-bottom:1px solid var(--v3-line)}.progress-v5 li b{font-size:1.3rem}.progress-v5 li span{color:#8b786a}.progress-v5 li.done span{color:#69765f}.progress-v5 li.active span{color:var(--v3-red);font-weight:900}
+.passport-v5-languages{padding:clamp(70px,9vw,130px) max(5vw,calc((100% - 1296px)/2));display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center;background:#dfceb8}.passport-v5-languages>div:last-child{display:flex;flex-wrap:wrap;gap:12px}.passport-v5-languages span{padding:12px 18px;border:1px solid #a8947b;border-radius:999px;font-weight:900}.passport-v5-footer{padding:80px 5vw;display:flex;justify-content:center;gap:12px;background:#18110e}
+
+.plans-v5-main{padding-top:76px;background:#f2eadf}.plans-v5-hero{padding:clamp(80px,10vw,150px) max(5vw,calc((100% - 1296px)/2));display:grid;grid-template-columns:1fr .75fr;gap:8vw;align-items:end;background:#19110e;color:#fff}.plans-v5-hero h1{font-size:clamp(3.5rem,6vw,7rem);line-height:1.04;margin:16px 0 24px}.plans-v5-hero>div>p:last-child{color:#d6c9bf}.plans-v5-hero aside{display:flex;align-items:center;justify-content:space-between;padding:24px;border-block:1px solid #ffffff55;font-weight:900}.plans-v5-hero aside i{font-style:normal;color:var(--v3-gold)}
+.plans-v5-grid{width:min(1296px,90%);margin:0 auto;padding:clamp(70px,9vw,130px) 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.plan-v5-card{position:relative;padding:clamp(36px,4vw,58px);background:#fffaf4;border:1px solid var(--v3-line);display:flex;flex-direction:column;min-height:620px}.plan-v5-card.featured{background:#231713;color:#fff;transform:translateY(-20px)}.plan-v5-card.featured p,.plan-v5-card.featured li{color:#d9cdc3}.plan-v5-card h2{font-size:2.8rem;margin:16px 0}.plan-v5-price{display:flex;align-items:end;gap:10px;padding-bottom:25px;border-bottom:1px solid var(--v3-line)}.plan-v5-price b{font:700 3.8rem/1 "Cormorant Garamond",serif;color:var(--v3-red)}.featured .plan-v5-price b{color:#e7b75f}.plan-v5-card>p:not(.mv3-kicker){color:var(--v3-copy)}.plan-v5-card ul{padding-left:20px;display:grid;gap:14px;margin:26px 0 40px}.plan-v5-card .mv3-btn{margin-top:auto}.plan-v5-ribbon{position:absolute;right:18px;top:18px;padding:6px 10px;background:#e7b75f;color:#231713;border-radius:99px;font-size:.72rem;font-weight:900}.plans-v5-note{padding:clamp(70px,9vw,120px) max(5vw,calc((100% - 1296px)/2));display:grid;grid-template-columns:1fr 1fr;gap:8vw;background:#dfceb8}.plans-v5-note h2{font-size:clamp(3rem,5vw,5.6rem);line-height:1.08;margin:15px 0}.plans-v5-note p{color:var(--v3-copy)}
+
+.plan-detail-main{padding-top:76px;background:#f3ebdf}.plan-detail-hero{display:grid;grid-template-columns:1.1fr .9fr;background:#19110e;color:#fff}.plan-detail-hero>div,.plan-detail-hero>aside{padding:clamp(55px,8vw,110px)}.plan-detail-hero h1{font-size:clamp(4rem,7vw,7.5rem);margin:15px 0}.plan-detail-hero>div>p:not(.mv3-kicker){color:#d8ccc2}.plan-detail-price{display:flex;align-items:end;gap:12px;margin-top:32px}.plan-detail-price b{font:700 5rem/1 "Cormorant Garamond",serif;color:#e7b75f}.plan-detail-hero>aside{background:#2b1d18;display:flex;flex-direction:column;justify-content:center}.plan-detail-hero aside>p{color:#e7b75f;font-weight:900}.plan-detail-hero aside h2{font-size:2.4rem;line-height:1.25}.plan-detail-steps{display:grid;gap:14px;margin-top:25px}.plan-detail-steps span{color:#7e6d62}.plan-detail-steps .done{color:#8faa84}.plan-detail-steps .active{color:#fff}
+html[lang="en"] .plans-v5-hero h1{font-size:clamp(3.1rem,5vw,5.8rem)}
+html[lang="en"] .passport-v5-hero h1{font-size:clamp(3.6rem,6vw,6.8rem)}
+.plan-detail-content{width:min(1296px,90%);margin:0 auto;padding:clamp(70px,9vw,130px) 0;display:grid;grid-template-columns:1fr 390px;gap:8vw;align-items:start}.plan-detail-body{display:grid;gap:100px}.plan-detail-body h2{font-size:clamp(2.8rem,4vw,4.5rem);margin:12px 0 30px}.plan-detail-list{display:grid;gap:1px;background:var(--v3-line);border:1px solid var(--v3-line)}.plan-detail-benefit{display:grid;grid-template-columns:52px 1fr;gap:20px;padding:25px;background:#fffaf4}.plan-detail-benefit span{font:700 1.8rem/1 "Cormorant Garamond",serif;color:var(--v3-gold)}.plan-detail-benefit h3{margin:0 0 7px}.plan-detail-benefit p{margin:0;color:var(--v3-copy)}.plan-funds{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--v3-line)}.plan-funds div{display:grid;padding:28px;border:1px solid var(--v3-line)}.plan-funds b{font:700 3.5rem/1 "Cormorant Garamond",serif;color:var(--v3-red)}.plan-detail-caption{color:var(--v3-copy)}.plan-detail-notes{display:grid;gap:16px;padding-left:22px;color:var(--v3-copy)}
+.plan-checkout-card{position:sticky;top:120px;padding:35px;background:#fffaf4;border:1px solid var(--v3-line);box-shadow:var(--v3-shadow)}.plan-checkout-card h2{font-size:2.2rem}.plan-checkout-price{display:flex;justify-content:space-between;align-items:end;padding:22px 0;border-block:1px solid var(--v3-line)}.plan-checkout-price b{font:700 2.7rem/1 "Cormorant Garamond",serif;color:var(--v3-red)}.plan-checkout-card label:not(.plan-agree){display:grid;gap:8px;margin:22px 0;font-weight:900}.plan-checkout-card select{height:48px;border:1px solid var(--v3-line);padding:0 12px;background:#fff;font:inherit}.plan-agree{display:flex;gap:10px;margin:22px 0;color:var(--v3-copy);font-size:.88rem}.plan-agree input{margin-top:4px}.plan-checkout-card .mv3-btn{width:100%;text-align:center}.plan-checkout-card .is-disabled{opacity:.45;pointer-events:none}.plan-back{display:block;text-align:center;margin-top:20px;color:var(--v3-ink);font-weight:900}
+
+@media(max-width:1100px){
+  .navbar .nav-right{gap:7px}.language-control select{min-width:104px}
+  .nfc-scan,.nfc-account,.nfc-guide,.passport-v5-hero,.passport-story,.artisan-card,.progress-v5,.passport-v5-languages,.plans-v5-hero,.plans-v5-note,.plan-detail-hero{grid-template-columns:1fr}
+  .nfc-scene{min-height:640px}.nfc-guide>.mv3-btn{grid-column:1}.passport-v5-nav{top:76px;overflow:auto;justify-content:flex-start}.passport-story>img{height:520px}.plans-v5-grid{grid-template-columns:1fr}.plan-v5-card.featured{transform:none}.plan-detail-content{grid-template-columns:1fr}.plan-checkout-card{position:static}
+}
+@media(max-width:760px){
+  .language-control{margin:8px 18px 0}.language-control select{width:100%}.navbar.menu-open .language-control{display:flex}
+  .nfc-flow{padding-top:72px}.nfc-flow__progress{top:72px;padding:12px}.nfc-flow__progress i{width:7vw}.nfc-flow__progress span{width:28px;height:28px}
+  .nfc-scan__copy{padding:55px 22px}.nfc-scan__copy h1{font-size:3.6rem}.nfc-scene{min-height:500px}.nfc-phone{width:44%}.nfc-tag{width:110px;right:10%}
+  .nfc-auth-visual{min-height:420px}.nfc-auth-card{width:100%;padding:35px 22px}.nfc-welcome h1{font-size:3.5rem}.nfc-welcome__id{flex-direction:column;gap:5px}.nfc-guide{padding:60px 18px;gap:40px}.nfc-guide__grid{grid-template-columns:1fr}.passport-v5-hero>div{padding:58px 22px}.passport-v5-hero h1{font-size:4rem}.passport-v5-hero>img{min-height:480px}.passport-v5-nav{top:72px}.passport-v5-section{width:calc(100% - 32px);padding:70px 0}.passport-v5-section h2,.passport-v5-languages h2{font-size:3rem}.passport-story>img{height:390px}.artisan-card{width:calc(100% - 32px)}.artisan-card>img{min-height:420px}.artisan-card>div{padding:38px 24px}.process-v5-list article{grid-template-columns:48px 1fr}.process-v5-list time{grid-column:2}.passport-v5-languages{padding:65px 22px}.passport-v5-footer{flex-direction:column}.passport-v5-footer .mv3-btn{width:100%;text-align:center}
+  .plans-v5-hero{padding:70px 22px}.plans-v5-hero h1{font-size:3.7rem}.plans-v5-hero aside{display:grid;grid-template-columns:1fr auto;gap:12px}.plans-v5-hero aside i{display:none}.plans-v5-grid{width:calc(100% - 32px)}.plans-v5-note{padding:65px 22px}.plan-v5-card{min-height:0}.plan-detail-hero>div,.plan-detail-hero>aside{padding:55px 22px}.plan-detail-hero h1{font-size:4rem}.plan-detail-content{width:calc(100% - 32px)}.plan-funds{grid-template-columns:1fr}.plan-detail-price b{font-size:3.8rem}
 }
 
 .tag{
@@ -1564,13 +1648,13 @@ body.storefront {
 }
 
 </style></head>
-<body class="market-v3"><nav class="navbar solid" id="navbar"><a class="logo" href="index.html">記藝共養所</a><div class="nav-center"><a href="index.html#story">品牌故事</a><a href="index.html#model">共養模式</a><a href="nfc.html">數位履歷</a><a href="products.html" aria-current="page">商品頁</a><a href="plans.html">共養方案</a></div><div class="nav-right"><a class="nav-pill" href="contact.html">聯絡我們</a></div><button class="mobile-nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false">☰</button></nav>
-<main class="mv3-main"><div class="mv3-wrap mv3-crumb"><a href="products.html">本季作品</a>　/　竹編生活小物</div><header class="mv3-detail-hero"><div class="mv3-detail-photo"><img src="images/bamboo-detail.jpg" alt="竹編生活小物"></div><div class="mv3-detail-copy"><div class="mv3-badges"><span class="mv3-badge">日常入門</span><span class="mv3-badge">天然竹材</span><span class="mv3-badge">手工編織</span></div><p class="mv3-kicker">Bamboo for every day</p><h1>把編織的節奏，<br>放回每天。</h1><p>從一只杯墊開始，感受竹篾交錯的秩序。輕巧、耐用，也保留手工細微差異，讓傳統工序自然進入每一次喝茶與用餐。</p><div class="mv3-detail-price">NT$333<small>競賽提案概念售價｜款式依當期合作工坊為準</small></div><ul class="mv3-includes"><li>手工竹編杯墊一件</li><li>工序與保養說明</li><li>共養者線上登錄入口</li><li>季度技藝進度通知</li></ul><div class="mv3-actions"><a class="mv3-btn" href="contact.html">加入共養</a><a class="mv3-btn line" href="products.html">比較其他作品</a></div><p class="mv3-delivery">預計確認後 14–21 個工作天交付；天然竹色會隨使用時間溫潤變化。</p></div></header>
+<body class="market-v3"><nav class="navbar solid" id="navbar"><a class="logo" href="index.html">記藝共養所</a><div class="nav-center"><a href="index.html#story">品牌故事</a><a href="index.html#model">共養模式</a><a href="nfc.html">掃描我的NFC</a><a href="products.html" aria-current="page">商品頁</a><a href="plans.html">共養方案</a></div><div class="nav-right"><a class="nav-pill" href="contact.html">聯絡我們</a></div><button class="mobile-nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false">☰</button></nav>
+<main class="mv3-main"><div class="mv3-wrap mv3-crumb"><a href="products.html">本季作品</a>　/　竹編生活小物</div><header class="mv3-detail-hero"><div class="mv3-detail-photo"><img src="images/bamboo-detail.jpg" alt="竹編生活小物"></div><div class="mv3-detail-copy"><div class="mv3-badges"><span class="mv3-badge">日常入門</span><span class="mv3-badge">天然竹材</span><span class="mv3-badge">手工編織</span></div><p class="mv3-kicker">Bamboo for every day</p><h1>把編織的節奏，<br>放回每天。</h1><p>從一只杯墊開始，感受竹篾交錯的秩序。輕巧、耐用，也保留手工細微差異，讓傳統工序自然進入每一次喝茶與用餐。</p><div class="mv3-detail-price">NT$333<small>競賽提案概念售價｜款式依當期合作工坊為準</small></div><ul class="mv3-includes"><li>手工竹編杯墊一件</li><li>工序與保養說明</li><li>共養者線上登錄入口</li><li>季度技藝進度通知</li></ul><div class="mv3-actions"><a class="mv3-btn" href="plans.html">加入共養</a><a class="mv3-btn line" href="products.html">探索更多作品</a></div><p class="mv3-delivery">預計確認後 14–21 個工作天交付；天然竹色會隨使用時間溫潤變化。</p></div></header>
 <div class="mv3-facts"><div class="mv3-fact"><small>作品形式</small><strong>杯墊／桌上小物</strong></div><div class="mv3-fact"><small>主要材質</small><strong>天然竹材</strong></div><div class="mv3-fact"><small>製作方式</small><strong>剖竹、劈篾、手編</strong></div><div class="mv3-fact"><small>適合用途</small><strong>日常使用與贈禮</strong></div></div>
 <section class="mv3-section mv3-wrap mv3-story"><div class="mv3-story__photo"><img src="images/bamboo.jpg" alt="竹編作品生活情境"></div><div class="mv3-story__copy"><p class="mv3-kicker">The rhythm of weaving</p><h2 class="mv3-heading">真正被使用，<br>才是最長久的展示。</h2><p>竹編的難不只在「編」，更在前段材料處理。剖竹、劈篾、刮青、定寬，每一步都決定竹篾是否柔韌、成品是否穩定。</p><p>我們以小型日用品降低第一次參與的門檻，讓支持不需要等待特殊場合，而是每天都能發生。</p></div></section>
 <section class="mv3-section mv3-wrap mv3-package"><div><p class="mv3-kicker">Simple, not ordinary</p><h2 class="mv3-heading">小小一件，<br>工序一樣完整。</h2></div><div class="mv3-package__list"><div class="mv3-package__row"><span>01</span><div><h3>天然材料</h3><p>竹材經乾燥與修整，保留自然色澤與纖維。</p></div></div><div class="mv3-package__row"><span>02</span><div><h3>手工編紋</h3><p>每條竹篾的鬆緊與收邊都由手完成。</p></div></div><div class="mv3-package__row"><span>03</span><div><h3>使用與保養</h3><p>附清潔、乾燥與收納說明，讓作品長久陪伴。</p></div></div></div></section>
-<section class="mv3-end"><div class="mv3-wrap"><p class="mv3-kicker">Small object, lasting craft</p><h2 class="mv3-heading">讓手感，重新回到生活。</h2><p class="mv3-lead">適合第一次共養、送禮或活動合作；團體數量可洽詢故事卡與包裝方案。</p><div class="mv3-actions"><a class="mv3-btn light" href="contact.html">加入共養</a><a class="mv3-btn glass" href="products.html">回到作品系列</a></div></div></section></main>
-<footer class="mv3-footer"><div class="mv3-footer__inner"><div><h2>記藝共養所</h2><p>讓每一次共養，都成為文化延續的力量。</p></div><nav><a href="products.html">商品系列</a><a href="nfc.html">數位履歷</a><a href="contact.html">聯絡我們</a></nav></div></footer><script data-jiyi-v4>
+<section class="mv3-end"><div class="mv3-wrap"><p class="mv3-kicker">Small object, lasting craft</p><h2 class="mv3-heading">讓手感，重新回到生活。</h2><p class="mv3-lead">適合第一次共養、送禮或活動合作；團體數量可洽詢故事卡與包裝方案。</p><div class="mv3-actions"><a class="mv3-btn" href="plans.html">加入共養</a><a class="mv3-btn line" href="products.html">探索更多作品</a></div></div></section></main>
+<footer class="mv3-footer"><div class="mv3-footer__inner"><div><h2>記藝共養所</h2><p>讓每一次共養，都成為文化延續的力量。</p></div><nav><a href="products.html">商品系列</a><a href="nfc.html">掃描我的NFC</a><a href="contact.html">聯絡我們</a></nav></div></footer><script data-jiyi-v5>
 
 function updateNav(){
   const nav = document.getElementById("navbar");
@@ -1614,5 +1698,335 @@ if(nav && menuToggle){
     menuToggle.textContent = "☰";
   }));
 }
+
+// V5 NFC guided experience
+document.querySelectorAll("[data-nfc-next]").forEach(button=>{
+  button.addEventListener("click", ()=>{
+    const target = button.dataset.nfcNext;
+    document.querySelectorAll("[data-nfc-stage]").forEach(stage=>stage.classList.toggle("is-active", stage.dataset.nfcStage === target));
+    const order = ["scan","account","welcome","guide","passport"];
+    const current = order.indexOf(target);
+    document.querySelectorAll("[data-flow-dot]").forEach(dot=>{
+      const index = order.indexOf(dot.dataset.flowDot);
+      dot.classList.toggle("is-active", index === current);
+      dot.classList.toggle("is-done", index < current);
+    });
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+
+document.querySelectorAll("[data-auth-tab]").forEach(tab=>{
+  tab.addEventListener("click", ()=>{
+    document.querySelectorAll("[data-auth-tab]").forEach(item=>item.classList.toggle("is-active", item === tab));
+    document.querySelectorAll("[data-auth-panel]").forEach(panel=>panel.classList.toggle("is-active", panel.dataset.authPanel === tab.dataset.authTab));
+  });
+});
+
+// V5 plan detail content and purchase confirmation gate
+const planDetail = document.querySelector("[data-plan-detail]");
+if(planDetail){
+  const plans = {
+    seed:{code:"01 · SEED PLAN",name:"青芽共養",price:"NT$300",summary:"適合第一次參與，支持工序紀錄與地方推廣，持續收到復甦進度。",benefits:[
+      ["數位共養感謝卡","記錄支持日期、技藝名稱與共養者姓名。"],
+      ["季度復甦進度","每季收到展覽、教學與工序記錄的更新摘要。"],
+      ["活動優先通知","地方展覽與公開工作坊開放時優先收到消息。"]
+    ]},
+    craft:{code:"02 · CRAFT PLAN",name:"匠心共養",price:"NT$1,000",summary:"把一件技藝作品帶回生活，並透過 NFC 履歷持續追蹤工序與共養任務。",benefits:[
+      ["共養商品一件","依選擇的工藝系列提供可使用或收藏的手工作品。"],
+      ["NFC 專屬共養履歷","查看技藝故事、職人介紹、工序記錄與復甦進度。"],
+      ["作品與會員連結","作品編號會加入共養帳戶，後續掃描即可開啟。"],
+      ["季度活動更新","收到展覽、工作坊與地方合作進度。"]
+    ]},
+    legacy:{code:"03 · LEGACY PLAN",name:"傳承共養",price:"NT$3,000",summary:"適合深度收藏或企業參與，加入限定作品、工作坊與年度技藝追蹤。",benefits:[
+      ["限定作品或共養套組","依當期合作內容提供限定作品、編號或主題套組。"],
+      ["工作坊與地方活動優惠","享有指定場次優先報名與共養者優惠。"],
+      ["年度技藝狀態報告","完整整理職人合作、資金用途與復甦任務成果。"],
+      ["共養者專屬標記","姓名或組織名稱可依意願登錄於年度支持名錄。"]
+    ]}
+  };
+  const key = new URLSearchParams(location.search).get("plan") || "craft";
+  const selected = plans[key] || plans.craft;
+  planDetail.dataset.plan = key;
+  planDetail.querySelectorAll("[data-plan-code]").forEach(el=>el.textContent=selected.code);
+  planDetail.querySelectorAll("[data-plan-name]").forEach(el=>{el.textContent=selected.name;el.dataset.i18n=`${key}_name`;});
+  planDetail.querySelectorAll("[data-plan-price]").forEach(el=>el.textContent=selected.price);
+  planDetail.querySelectorAll("[data-plan-summary]").forEach(el=>{el.textContent=selected.summary;el.dataset.i18n=`${key}_desc`;});
+  planDetail.querySelectorAll("[data-plan-breadcrumb]").forEach(el=>{el.textContent=selected.name;el.dataset.i18n=`${key}_name`;});
+  const list = planDetail.querySelector("[data-plan-benefits]");
+  selected.benefits.forEach((benefit,index)=>{
+    const row=document.createElement("article");
+    row.className="plan-detail-benefit";
+    row.innerHTML=`<span>${String(index+1).padStart(2,"0")}</span><div><h3 data-i18n="${key}_detail_${index+1}_title">${benefit[0]}</h3><p data-i18n="${key}_detail_${index+1}_desc">${benefit[1]}</p></div>`;
+    list.appendChild(row);
+  });
+  const agree=planDetail.querySelector("[data-plan-agree]");
+  const purchase=planDetail.querySelector("[data-plan-purchase]");
+  agree.addEventListener("change",()=>{
+    purchase.classList.toggle("is-disabled",!agree.checked);
+    purchase.setAttribute("aria-disabled",String(!agree.checked));
+  });
+  purchase.addEventListener("click",event=>{if(!agree.checked) event.preventDefault();});
+}
+
+window.JIYI_LEGACY_FULL={
+"記藝共養所將職人手藝、故事與製作過程，轉化為能被收藏、被感應、被持續追蹤的共養型物件。        每一次支持，都讓一門技藝重新被需要。":["We turn artisanship, stories, and making into co-nurtured objects that can be collected, scanned, and followed. Every act of support makes a craft needed again.","職人の技、物語、制作工程を、収蔵・スキャン・継続追跡できる共養作品へ変えます。一つひとつの支援が、技芸を再び必要なものにします。"],
+"閱讀品牌故事":["Read Our Story","ブランドストーリーを読む"],
+"許多台灣傳統技藝並不是因為沒有價值而消失，而是逐漸失去被日常使用、被市場理解、被下一代學習的機會。":["Many Taiwanese crafts are fading not because they lack value, but because they are losing opportunities to be used, understood by the market, and learned by the next generation.","台湾の伝統技芸の多くは価値がないから消えるのではなく、日常で使われ、市場に理解され、次世代が学ぶ機会を失いつつあります。"],
+"記藝共養所希望成為職人與消費者之間的橋樑。我們讓商品不只是商品，而是帶著故事、工序、職人生命與復甦進度的文化入口。":["Jiyi aims to bridge artisans and consumers. A product becomes a cultural doorway carrying stories, processes, an artisan's life, and revival progress.","記藝共養所は職人と消費者をつなぐ橋を目指します。商品を、物語・工程・職人の人生・再生の進捗を伝える文化への入口にします。"],
+"傳統技藝面臨的問題，不只是曝光不足，而是缺乏能將文化情感轉換為持續收入的機制。":["The challenge is not only visibility, but the lack of a system that turns cultural appreciation into sustainable income.","課題は露出不足だけでなく、文化への思いを継続的な収入へ変える仕組みがないことです。"],
+"市場需求被取代":["Market Demand Replaced","市場需要の代替"],
+"機械量產與現代生活用品逐漸取代手工技藝，讓許多職人的作品失去穩定市場。":["Mass production and modern goods have replaced handcraft, leaving many artisans without a stable market.","機械量産と現代の生活用品が手仕事に取って代わり、多くの職人作品が安定した市場を失っています。"],
+"故事沒有被轉譯":["Stories Not Translated","物語が届かない"],
+"職人懂技藝，卻未必有能力處理品牌包裝、數位內容、外語介紹與社群行銷。":["Artisans know their craft, but may lack resources for branding, digital content, translation, and social marketing.","職人は技を知っていても、ブランディング、デジタル内容、多言語紹介、SNS発信まで担えるとは限りません。"],
+"支持容易中斷":["Support Ends Too Soon","支援が続かない"],
+"一般文創商品多是一次性消費，活動也常在結束後停止互動，難以形成長期支持。":["Most cultural purchases are one-off, and interaction often ends with an event, making long-term support difficult.","一般的な文化商品は一度きりの消費になりやすく、イベント後に交流が途切れ、長期支援につながりにくいのが現状です。"],
+"共養不是單純捐款，也不是一般購物，而是一種能看見故事、資金流向與復甦進度的文化支持方式。":["Co-nurturing is neither a donation nor ordinary shopping. It lets supporters see the story, use of funds, and revival progress.","共養は寄付でも通常の買い物でもありません。物語、資金の流れ、再生の進捗を確認できる文化支援です。"],
+"具象技藝商品":["Tangible Craft Products","形ある技芸商品"],
+"將油紙傘、竹編、春仔花、花磚、木雕等技藝轉化為可收藏、可使用的生活物件。":["Transform oil-paper umbrellas, bamboo weaving, silk flowers, tiles, and woodcarving into collectible, usable objects.","油紙傘、竹編み、春仔花、花タイル、木彫などを、収蔵でき、使える生活の品へ。"],
+"意象技藝信物":["Tokens of Intangible Heritage","無形文化のしるし"],
+"將布袋戲、傳統音樂、祭典等無形文化轉化為 NFC 手環、收藏卡、票卡或徽章。":["Translate puppetry, traditional music, and festivals into NFC wristbands, cards, tickets, or badges.","布袋戯、伝統音楽、祭礼などの無形文化を、NFCバンド、カード、チケット、バッジへ展開します。"],
+"延伸共養體驗":["Extended Co-nurture Experiences","共養体験の拡張"],
+"透過工作坊、地方導覽、師傅見面會與年度會員，將一次支持延伸為長期參與。":["Workshops, local tours, artisan meetings, and membership turn one act of support into long-term participation.","工房体験、地域案内、職人交流、年間会員を通して、一度の支援を長期参加へつなげます。"],
+"美濃油紙傘｜數位技藝履歷 Demo":["Meinong Oil-paper Umbrella | Digital Passport Demo","美濃油紙傘｜デジタル技芸履歴デモ"],
+"技藝故事：美濃紙傘與客家祝福文化":["Craft story: Meinong umbrellas and Hakka blessings","技芸物語：美濃の紙傘と客家の祝福文化"],
+"職人介紹：油紙傘製作職人與地方工坊":["Artisan: umbrella makers and local workshops","職人紹介：油紙傘職人と地域工房"],
+"製作工序：削竹、製骨、裱紙、上油、彩繪":["Process: bamboo, frame, paper, oil, painting","工程：竹削り、骨組み、紙張り、油引き、彩色"],
+"共養任務：手作坊、地方展覽、工序紀錄":["Missions: workshops, exhibitions, process records","共養任務：工房体験、地域展示、工程記録"],
+"目前進度：40%":["Current progress: 40%","現在の進捗：40%"],
+"最新消息：第二場地方展覽籌備中":["Latest: second local exhibition in preparation","最新情報：第2回地域展示を準備中"],
+"中文":["Chinese","中国語"],"台語":["Taiwanese","台湾語"],"客語":["Hakka","客家語"],"日本語":["Japanese","日本語"],
+"當一件作品被帶回生活，NFC 讓它仍然能持續更新故事。這裡以油紙傘作為 demo，呈現作品感應後可看見的技藝履歷、共養任務與現場紀錄。":["After a work enters daily life, NFC keeps its story growing. This umbrella demo shows the passport, missions, and field records revealed by a tap.","作品が暮らしに入ったあとも、NFCで物語は更新され続けます。油紙傘を例に、スキャン後に見られる技芸履歴、共養任務、現場記録を紹介します。"],
+"從可以收藏的油紙傘，到重新回到日常的竹編與春仔花，每一件作品都是技藝延續的入口。":["From collectible umbrellas to bamboo weaving and silk flowers returning to daily life, every work is an entrance to continuity.","収蔵できる油紙傘から、日常へ戻る竹編みや春仔花まで、すべての作品が技芸継承への入口です。"],
+"從日常器物到文化祝福，支持工序紀錄與職人收入。":["From daily object to cultural blessing, supporting process records and artisan income.","日用品から文化の祝福へ。工程記録と職人収入を支えます。"],
+"竹籐編織":["Bamboo & Rattan Weaving","竹・籐編み"],
+"讓編織工序重新回到日常生活。":["Bring weaving processes back into everyday life.","編みの工程を再び日常へ。"],
+"春仔花":["Silk-wrapped Flowers","春仔花"],
+"讓婚嫁祝福與女性手藝被年輕世代看見。":["Let younger generations see wedding blessings and women's craft.","婚礼の祝福と女性の手仕事を若い世代へ。"],
+"進入商品頁":["View Products","商品を見る"],
+"以下數字可依問卷、網站測試與日後實際合作結果調整。":["These figures may be updated after surveys, testing, and future partnerships.","以下の数値は調査、サイトテスト、今後の連携結果に応じて更新します。"],
+"示範技藝":["Featured Crafts","紹介技芸"],"潛在共養者":["Potential Supporters","共養見込み者"],"技藝紀錄素材":["Craft Records","技芸記録素材"],"復甦基金提撥":["Revival Fund","再生基金配分"],
+"免責聲明：本網站目前為提案展示與市場驗證用途，部分圖片、商品與合作內容為概念示意，尚未代表正式販售或正式合作。":["Disclaimer: This site is for proposal and market validation. Some images, products, and partnerships are conceptual and do not represent confirmed sales or agreements.","免責事項：本サイトは提案展示と市場検証を目的としています。一部の画像、商品、連携内容は概念例であり、正式販売・正式契約を示すものではありません。"],
+
+"瀏覽本季作品":["Browse This Season","今季の作品を見る"],
+"記藝共養所從真實職人工序出發，重新思考傳統技藝能以什麼形式進入現代生活。作品的外型、價格、包裝與數位內容，都以正式商品的標準被設計。":["Starting from real artisan processes, Jiyi rethinks how traditional craft can enter modern life. Form, price, packaging, and digital content are designed to retail standards.","実際の職人工程から出発し、伝統技芸が現代生活へ入る形を再考。外観、価格、包装、デジタル内容まで正式商品基準で設計します。"],
+"售價的一部分回到職人製作，另一部分支持記錄、教學與地方推廣；購買完成後，關係仍透過 NFC 技藝履歷延續。":["Part of the price returns to artisans; another part supports documentation, teaching, and local outreach. NFC keeps the relationship alive after purchase.","価格の一部は職人制作へ、別の一部は記録、教育、地域発信へ。購入後もNFC履歴を通して関係が続きます。"],
+"從削竹、製骨、裱紙到上油彩繪，完整收藏一把能被使用的手工油紙傘，也持續看見技藝復甦的下一步。":["From bamboo shaping to frame, paper, oil, and painting: own a usable handmade umbrella and follow its revival.","竹削り、骨組み、紙張り、油引き、彩色まで。使える手作り油紙傘を収蔵し、再生の歩みを見守ります。"],
+"進入作品 →":["View Work →","作品を見る →"],
+"以杯墊與桌上器物作為日常入口。真正被使用，才是編織技藝最長久、也最自然的展示。":["Coasters and tabletop objects make an everyday entrance. Being used is weaving's most natural and lasting display.","コースターや卓上用品を日常の入口に。使われることが、編みの技芸にとって最も自然で長い展示です。"],
+"以絲線纏出的祝福，轉譯為能被佩戴的當代信物。讓女性手藝不只被記得，也重新進入重要時刻。":["Thread-wrapped blessings become wearable contemporary tokens, bringing women's craft back into important moments.","糸で巻いた祝福を身につけられる現代のしるしへ。女性の手仕事を大切な時間に戻します。"],
+"真實職人工序":["Authentic Artisan Process","本物の職人工程"],"合作工坊與製作資訊清楚標示":["Workshop and making details clearly shown","工房・制作情報を明示"],
+"作品數位身分":["Digital Work Identity","作品のデジタルID"],"NFC 串連來源、工序與更新紀錄":["NFC links origin, process, and updates","NFCで由来・工程・更新を連携"],
+"透明共養提撥":["Transparent Allocation","透明な共養配分"],"概念模型提撥售價 10% 支持任務":["Proposal model allocates 10% to missions","提案モデルでは価格の10%を任務へ"],
+"可長期使用":["Made for Long-term Use","長く使える設計"],"從商品設計到保養資訊完整交付":["Complete product and care information","商品設計から手入れ情報まで提供"],
+"手機輕觸作品上的 NFC，就能打開專屬技藝履歷：認識職人、理解工序、追蹤共養進度，也收到下一次展覽、工作坊與地方活動。一次購買因此成為一段持續的文化關係。":["Tap the NFC to meet artisans, understand processes, follow progress, and receive exhibition, workshop, and local event updates. One purchase becomes an ongoing cultural relationship.","NFCをかざすと、職人、工程、共養進捗、展示・工房・地域イベント情報が開きます。一度の購入が続く文化的関係になります。"],
+"本網站目前為競賽提案與市場驗證用途；商品、售價及合作內容為概念示意。":["This site is a competition proposal and market-validation demo; products, prices, and partnerships are conceptual.","本サイトはコンペ提案・市場検証用です。商品、価格、連携内容は概念例です。"],
+
+"本季作品":["This Season","今季の作品"],"手工限量":["Handmade Limited Edition","手作り限定"],"作品編號":["Work ID","作品番号"],"NFC 履歷":["NFC Passport","NFC履歴"],
+"真正能被撐開、被使用，也值得被收藏的油紙傘。竹骨、棉紙與天然桐油保留職人手感，作品的下一段故事則持續寫進你的數位履歷。":["An oil-paper umbrella made to open, use, and collect. Bamboo, cotton paper, and tung oil retain the artisan's touch while its next story enters your passport.","実際に開き、使い、収蔵できる油紙傘。竹骨、綿紙、天然桐油に職人の手触りを残し、次の物語をデジタル履歴へ記します。"],
+"競賽提案概念售價｜每件作品皆有獨立編號":["Concept price | Every work has a unique ID","提案価格｜全作品に固有番号"],
+"手工美濃油紙傘一把":["One handmade Meinong umbrella","手作り美濃油紙傘1本"],"作品證明、收藏包裝與保養說明":["Certificate, collector packaging, and care guide","作品証明、収蔵包装、手入れ案内"],"NFC 數位技藝履歷永久入口":["Permanent NFC craft passport","NFCデジタル技芸履歴への恒久アクセス"],"年度共養進度與活動通知":["Annual progress and event notices","年間共養進捗・イベント案内"],
+"預計確認後 45–60 個工作天交付；天然材質與手工製作會保留些微差異。":["Delivery in 45–60 business days after confirmation; natural and handmade variations remain.","確認後45〜60営業日で納品予定。天然素材と手仕事による個体差があります。"],
+"作品尺寸":["Dimensions","作品寸法"],"直徑約 80 cm":["Approx. 80 cm diameter","直径約80cm"],"主要材質":["Materials","主な素材"],"竹、棉紙、桐油":["Bamboo, cotton paper, tung oil","竹、綿紙、桐油"],"製作地":["Made in","制作地"],"高雄・美濃":["Meinong, Kaohsiung","高雄・美濃"],"共養提撥":["Co-nurture Allocation","共養配分"],"概念模型 10%":["Proposal model: 10%","提案モデル10%"],
+"削竹決定傘骨韌性，製骨影響開合，裱紙與上油則考驗濕度、時間和經驗。每一毫米的修整，都會成為使用時的手感。":["Bamboo shaping sets resilience; framing determines movement; paper and oil demand control of humidity, time, and experience. Every millimeter becomes part of the feel.","竹削りは骨のしなやかさを、骨組みは開閉を左右します。紙張りと油引きは湿度、時間、経験が鍵。1ミリの調整が使い心地になります。"],
+"我們不把這些細節藏在商品背後，而是將它們完整記錄，讓消費者知道一把傘為何值得這個價格，也知道支持去了哪裡。":["We record these details so people understand the price and where their support goes.","細部を隠さず記録し、なぜこの価格なのか、支援がどこへ届くのかを伝えます。"],
+"收到的不只是一把傘。":["More than an umbrella.","届くのは傘だけではありません。"],"從實體作品到數位內容，每個接觸點都以正式販售的完整體驗設計。":["From physical work to digital content, every touchpoint is designed as a complete retail experience.","実物からデジタル内容まで、すべてを正式販売の体験として設計。"],
+"收藏級手工作品":["Collector-grade Handmade Work","収蔵級の手仕事作品"],"完成檢查、作品編號與職人工坊資訊。":["Final inspection, work ID, and workshop information.","完成検査、作品番号、職人工房情報。"],"作品證明與專屬包裝":["Certificate & Dedicated Packaging","作品証明・専用包装"],"包含材質、完成日期、保存與使用建議。":["Materials, completion date, storage, and use guidance.","素材、完成日、保存・使用案内。"],"持續更新的 NFC 履歷":["Continuously Updated NFC Passport","更新され続けるNFC履歴"],"工序紀錄、共養任務、職人故事與活動資訊。":["Process records, missions, artisan stories, and events.","工程記録、共養任務、職人物語、イベント情報。"],
+"分配比例為提案模型，正式合作時將與職人確認並在數位履歷公開更新。":["Allocation is a proposal model and will be confirmed with artisans and published in the passport.","配分は提案モデルです。正式連携時に職人と確認し、履歴で公開更新します。"],"職人製作收入":["Artisan Income","職人制作収入"],"材料與包裝":["Materials & Packaging","材料・包装"],"復甦任務基金":["Revival Mission Fund","再生任務基金"],"數位履歷維護":["Passport Maintenance","デジタル履歴維持"],"讓一把傘，撐起下一次傳承。":["Let one umbrella support the next inheritance.","一本の傘で、次の継承を支える。"],"留下聯絡方式，我們會提供作品細節、製作排程與正式合作後的交付說明。":["Contact us for work details, production schedule, and delivery information.","作品詳細、制作日程、正式連携後の納品案内をお送りします。"],
+
+"日常入門":["Everyday Entry","日常入門"],"天然竹材":["Natural Bamboo","天然竹"],"手工編織":["Handwoven","手編み"],
+"從一只杯墊開始，感受竹篾交錯的秩序。輕巧、耐用，也保留手工細微差異，讓傳統工序自然進入每一次喝茶與用餐。":["Begin with a coaster and feel the order of crossing bamboo strips. Light, durable, and handmade, it brings traditional process to every meal.","コースターから、竹ひごが交差する秩序を感じる。軽く丈夫で、手仕事の差を残し、伝統工程を毎日の食卓へ。"],
+"競賽提案概念售價｜款式依當期合作工坊為準":["Concept price | Style depends on current workshop","提案価格｜仕様は当期工房による"],"手工竹編杯墊一件":["One handwoven bamboo coaster","手編み竹コースター1点"],"工序與保養說明":["Process and care guide","工程・手入れ案内"],"共養者線上登錄入口":["Online co-nurturer registration","共養者オンライン登録"],"季度技藝進度通知":["Quarterly craft updates","四半期技芸進捗"],
+"預計確認後 14–21 個工作天交付；天然竹色會隨使用時間溫潤變化。":["Delivery in 14–21 business days; natural bamboo color deepens with use.","確認後14〜21営業日で納品。竹の色は使用とともに深まります。"],"作品形式":["Format","作品形態"],"杯墊／桌上小物":["Coaster / Tabletop object","コースター／卓上小物"],"製作方式":["Method","制作方法"],"剖竹、劈篾、手編":["Split bamboo, prepare strips, handweave","竹割り、ひご作り、手編み"],"適合用途":["Best For","用途"],"日常使用與贈禮":["Daily use and gifts","日常使い・贈り物"],
+"竹編的難不只在「編」，更在前段材料處理。剖竹、劈篾、刮青、定寬，每一步都決定竹篾是否柔韌、成品是否穩定。":["Bamboo weaving begins before weaving: splitting, strip-making, scraping, and sizing determine flexibility and stability.","竹編みの難しさは編む前にあります。竹割り、ひご作り、表皮削り、幅揃えが柔軟性と安定性を決めます。"],"我們以小型日用品降低第一次參與的門檻，讓支持不需要等待特殊場合，而是每天都能發生。":["Small daily objects lower the threshold, letting support happen every day rather than only on special occasions.","小さな日用品で参加の敷居を下げ、特別な日を待たず毎日支えられる形にします。"],"天然材料":["Natural Material","天然素材"],"竹材經乾燥與修整，保留自然色澤與纖維。":["Bamboo is dried and finished while retaining natural color and fiber.","竹を乾燥・整形し、自然な色と繊維を残します。"],"手工編紋":["Handwoven Pattern","手編み模様"],"每條竹篾的鬆緊與收邊都由手完成。":["Every strip's tension and edge are finished by hand.","竹ひごの張りと縁仕上げをすべて手で行います。"],"使用與保養":["Use & Care","使用・手入れ"],"附清潔、乾燥與收納說明，讓作品長久陪伴。":["Cleaning, drying, and storage guidance keeps the work with you longer.","清掃、乾燥、保管案内で長く使えます。"],"讓手感，重新回到生活。":["Bring handcraft back to daily life.","手触りを暮らしへ。"],"適合第一次共養、送禮或活動合作；團體數量可洽詢故事卡與包裝方案。":["Ideal for first-time support, gifts, or events; group story cards and packaging are available.","初めての共養、贈り物、イベント連携に。団体向けカード・包装はお問い合わせください。"],
+
+"手工纏花":["Hand-wrapped Flower","手巻き花"],"祝福信物":["Token of Blessing","祝福のしるし"],"春仔花曾在婚嫁與節慶中承載家族情感。細線一圈圈纏出花瓣，再轉譯成能被今天佩戴的飾品，讓女性手藝重新進入重要時刻。":["Silk flowers once carried family feeling in weddings and festivals. Thread becomes petals and a wearable contemporary piece, returning women's craft to important moments.","春仔花は婚礼や祭りで家族の思いを担ってきました。糸を巻いて花びらを作り、現代に身につけられる装身具へ。女性の手仕事を大切な時へ戻します。"],"競賽提案概念售價｜手工花形與色澤略有差異":["Concept price | Handmade forms and colors vary","提案価格｜手仕事の花形・色には個体差あり"],"手工春仔花髮簪一件":["One handmade silk-flower hairpin","手作り春仔花かんざし1点"],"作品編號與花形寓意卡":["Work ID and flower-meaning card","作品番号・花形意味カード"],"NFC 數位技藝履歷":["NFC Digital Craft Passport","NFCデジタル技芸履歴"],"專屬收藏盒與保養說明":["Dedicated box and care guide","専用収蔵箱・手入れ案内"],
+"預計確認後 21–30 個工作天交付；正式合作後可依場合提供配色選擇。":["Delivery in 21–30 business days; color options may be available for formal collaborations.","確認後21〜30営業日で納品。正式連携では用途に応じた配色を相談できます。"],"髮簪／收藏飾品":["Hairpin / Collectible jewelry","かんざし／収蔵装身具"],"絲線、紙、金屬":["Silk thread, paper, metal","絹糸、紙、金属"],"手工纏繞成形":["Hand-wrapped construction","手巻き成形"],"文化意涵":["Cultural Meaning","文化的意味"],"婚嫁與節慶祝福":["Wedding and festival blessings","婚礼・祭礼の祝福"],
+"春仔花的價值不只在精細，更在它曾由家族女性彼此教導、在重要日子親手完成。當生活方式改變，這項技藝也需要新的使用理由。":["Its value lies not only in detail, but in women teaching one another and making it for important days. Changing life requires new reasons to use the craft.","価値は精緻さだけでなく、家族の女性が教え合い、大切な日に手作りした歴史にあります。暮らしの変化に合わせ、新しい使う理由が必要です。"],"我們保留花形寓意與纏線工序，重新調整尺寸、色彩與配戴形式，讓傳統祝福自然走進當代生活。":["We preserve floral meanings and wrapping techniques while adapting size, color, and wearability for contemporary life.","花形の意味と糸巻き工程を守りつつ、サイズ、色、装着方法を整え、伝統の祝福を現代生活へ。"],"被佩戴，也被理解。":["Worn and understood.","身につけ、意味を知る。"],"職人手工纏花":["Artisan-wrapped Flowers","職人の手巻き花"],"每片花瓣由絲線反覆纏繞成形。":["Every petal is formed by repeatedly wrapping silk thread.","各花びらを絹糸で繰り返し巻いて成形。"],"花形寓意故事":["Meaning of Each Flower","花形の物語"],"讓贈禮者與收禮者理解祝福從何而來。":["Help giver and recipient understand the blessing's origin.","贈る人と受け取る人が祝福の由来を理解できます。"],"作品數位履歷":["Digital Work Passport","作品デジタル履歴"],"收錄製作過程、職人訪談與共養進度。":["Includes making process, artisan interviews, and progress.","制作工程、職人インタビュー、共養進捗を収録。"],"適合收藏、婚禮贈禮與文化活動合作；正式合作後可依場合洽詢配色。":["For collecting, wedding gifts, and cultural events; color consultation is available.","収蔵、婚礼の贈り物、文化イベントに。正式連携では配色相談が可能です。"]
+};
+
+(function(){
+  const langIndex={zh:0,en:1,ja:2,nan:3,hak:4};
+  const languageNames={zh:"繁體中文",en:"English",ja:"日本語",nan:"閩南語",hak:"客語"};
+  const M={
+    brand:["記藝共養所","Jiyi Craft","記藝共養所","記藝共養所","記藝共養所"],
+    home:["首頁","Home","ホーム","頭頁","頭頁"],
+    nav_story:["品牌故事","Our Story","ブランドストーリー","品牌故事","品牌故事"],
+    nav_model:["共養模式","How It Works","共養の仕組み","共養方式","共養方式"],
+    nav_nfc:["掃描我的NFC","Scan My NFC","NFCをスキャン","掃描我的 NFC","掃描𠊎个 NFC"],
+    nav_products:["商品頁","Products","商品","商品頁","商品頁"],
+    nav_plans:["共養方案","Support Plans","共養プラン","共養方案","共養方案"],
+    nav_contact:["聯絡我們","Contact Us","お問い合わせ","聯絡阮","聯絡𠊎等"],
+    footer_line:["讓每一次共養，都成為文化延續的力量。","Let every act of co-nurturing carry culture forward.","一つひとつの共養を、文化を未来へつなぐ力に。","予逐擺共養，攏成做文化延續的力量。","分逐擺共養，都成為文化延續个力量。"],
+    join:["加入共養","Join Co-nurture","共養に参加","加入共養","加入共養"],
+    explore_more:["探索更多作品","Explore More Works","ほかの作品を見る","看閣較濟作品","尋更多作品"],
+    home_hero_desc:["記藝共養所將職人手藝、故事與製作過程，轉化為能被收藏、被感應、被持續追蹤的共養型物件。每一次支持，都讓一門技藝重新被需要。","We turn artisanship, stories, and making into co-nurtured objects that can be collected, scanned, and followed. Every act of support makes a craft needed again.","職人の技、物語、制作工程を、収蔵・スキャン・継続追跡できる共養作品へ変えます。一つひとつの支援が、技芸を再び必要なものにします。","阮共職人的手藝、故事佮製作過程，變做會當收藏、感應、一直追蹤的共養物件。逐擺支持，攏予一門技藝閣再受需要。","𠊎等摎職人手藝、故事摎製作過程，轉做做得收藏、感應、續等追蹤个共養物件。逐擺支持，都分一門技藝再過有需要。"],
+
+    nfc_scan_kicker:["NFC EXPERIENCE · STEP 01","NFC EXPERIENCE · STEP 01","NFC体験 · STEP 01","NFC 體驗 · 第一步","NFC 體驗 · 第一步"],
+    nfc_scan_title:["把手機靠近作品，<br>開啟你的共養旅程。","Hold your phone near the work<br>to begin your co-nurture journey.","スマートフォンを作品に近づけ、<br>共養の旅を始めましょう。","共手機倚近作品，<br>開啟你的共養路程。","摎手機偎近作品，<br>打開若个共養旅程。"],
+    nfc_scan_desc:["這裡會模擬實際購買後的感應流程。手機碰觸作品上的 NFC 標籤，就會開啟會員身分與專屬技藝履歷。","This simulates the experience after purchase. Tap the NFC tag on the work to open your member account and personal craft passport.","購入後の実際の体験を再現します。作品のNFCタグにスマートフォンをかざすと、会員情報と専用の技芸履歴が開きます。","遮會模擬實際買了後的感應流程。手機觸著作品頂懸的 NFC 標籤，就會開啟會員身分佮專屬技藝履歷。","這位會模擬實際買吔過後个感應流程。手機堵著作品頂高个 NFC 標籤，就會打開會員身分摎專屬技藝履歷。"],
+    nfc_start_scan:["開始模擬掃描","Start Simulated Scan","スキャンを体験","開始模擬掃描","開始模擬掃描"],
+    nfc_skip:["直接預覽共養履歷","Preview Passport","履歴を先に見る","直接看共養履歷","直接看共養履歷"],
+    nfc_ready:["準備感應","Ready to Tap","スキャン準備完了","準備感應","準備感應"],
+    nfc_auth_visual:["登入後，作品才會真正屬於你的共養帳戶。","Sign in to connect this work to your co-nurture account.","ログインすると、作品があなたの共養アカウントに登録されます。","登入了後，作品才會真正入去你的共養帳戶。","登入過後，作品正經會歸到若个共養帳戶。"],
+    login:["會員登入","Sign In","ログイン","會員登入","會員登入"],
+    register:["建立帳戶","Create Account","アカウント作成","開新帳戶","建立帳戶"],
+    welcome_back:["歡迎回來","Welcome Back","おかえりなさい","歡迎轉來","歡迎轉來"],
+    login_desc:["登入以連結你的作品與共養紀錄。","Sign in to connect your work and support records.","作品と共養記録を連携するためにログインしてください。","登入來連結你的作品佮共養紀錄。","登入來連結若个作品摎共養紀錄。"],
+    email:["電子信箱","Email","メールアドレス","電子批","電子郵件"],
+    password:["密碼","Password","パスワード","密碼","密碼"],
+    login_continue:["登入並繼續","Sign In & Continue","ログインして続ける","登入閣繼續","登入續下去"],
+    create_account:["建立共養帳戶","Create a Co-nurture Account","共養アカウントを作成","開一个共養帳戶","建立共養帳戶"],
+    register_desc:["只需一分鐘，之後每件作品都能收藏在同一個帳戶。","It takes one minute. Every future work can be kept in the same account.","登録は約1分。今後の作品も同じアカウントで管理できます。","干焦愛一分鐘，以後逐件作品攏會當收佇仝一个帳戶。","淨愛一分鐘，過後逐件作品都做得收在共下一个帳戶。"],
+    name:["姓名","Name","お名前","名姓","名姓"],
+    register_continue:["註冊並連結作品","Register & Connect Work","登録して作品を連携","註冊閣連結作品","註冊摎連結作品"],
+    nfc_welcome_title:["歡迎成為這把傘的共養者。","Welcome, co-nurturer of this umbrella.","この傘の共養者へ、ようこそ。","歡迎你成做這支傘的共養者。","歡迎你成為這支遮个共養者。"],
+    nfc_welcome_desc:["作品 MYU-2026-001 已加入你的帳戶。從今天起，你不只擁有一件作品，也能持續看見它支持了哪些職人、工序與復甦任務。","Work MYU-2026-001 is now in your account. From today, you can see which artisans, processes, and revival missions it supports.","作品MYU-2026-001がアカウントに登録されました。今日から、支援する職人・工程・再生ミッションを継続して確認できます。","作品 MYU-2026-001 已經加入你的帳戶。對今仔日起，你毋但有一件作品，嘛會當一直看伊支持啥物職人、工序佮復甦任務。","作品 MYU-2026-001 已加入若个帳戶。對今晡日起，你毋單淨有一件作品，還做得續等看佢支持哪兜職人、工序摎復甦任務。"],
+    work_id:["作品編號","Work ID","作品番号","作品編號","作品編號"],
+    connected:["已成功連結","Connected","連携済み","連結成功","連結成功"],
+    read_guide:["閱讀操作手冊","Read the Guide","使い方を見る","讀操作手冊","看操作手冊"],
+    guide_title:["你的共養履歷，可以這樣使用。","How to use your craft passport.","共養履歴の使い方。","你的共養履歷會當按呢用。","若个共養履歷做得恁樣用。"],
+    guide_desc:["所有內容都會隨著職人與共養任務持續更新。再次掃描 NFC，就能直接回到這裡。","Content is updated as the artisan and missions progress. Scan the NFC again anytime to return here.","職人と共養ミッションの進行に合わせて内容が更新されます。NFCを再度スキャンすれば、いつでもここに戻れます。","內容會綴職人佮共養任務一直更新。閣掃描 NFC，就會當直接轉來遮。","內容會跈等職人摎共養任務續等更新。再過掃描 NFC，就做得直接轉到這位。"],
+    guide_1_title:["收藏作品","Save Your Work","作品を保存","收藏作品","收藏作品"],guide_1_desc:["查看作品編號、材質、完成日期與保養方式。","View ID, materials, completion date, and care instructions.","作品番号、素材、完成日、お手入れ方法を確認。","看作品編號、材質、完成日期佮保養方式。","看作品編號、材料、完成日期摎保養方式。"],
+    guide_2_title:["認識職人","Meet the Artisan","職人を知る","熟似職人","認識職人"],guide_2_desc:["閱讀職人故事、工坊背景與每一道手工判斷。","Read the artisan story, workshop background, and handcraft decisions.","職人の物語、工房の背景、手仕事の判断を読む。","讀職人的故事、工房背景佮逐道手工判斷。","看職人故事、工坊背景摎逐道手工判斷。"],
+    guide_3_title:["追蹤進度","Track Progress","進捗を確認","追蹤進度","追蹤進度"],guide_3_desc:["掌握共養資金支持的展覽、教學與影像紀錄。","Follow exhibitions, teaching, and documentation funded by co-nurture.","共養資金が支える展示、教育、映像記録を確認。","掌握共養資金支持的展覽、教學佮影像紀錄。","掌握共養資金支持个展覽、教學摎影像紀錄。"],
+    guide_4_title:["切換語言","Switch Language","言語を切り替える","換語言","換語言"],guide_4_desc:["用中文、英文、日文、閩南語或客語閱讀故事。","Read in Chinese, English, Japanese, Taiwanese, or Hakka.","中国語、英語、日本語、閩南語、客家語で読めます。","用中文、英文、日文、閩南語抑是客語讀故事。","用中文、英文、日文、閩南語抑係客語看故事。"],
+    open_passport:["開啟我的共養履歷","Open My Craft Passport","共養履歴を開く","開我的共養履歷","打開𠊎个共養履歷"],
+    passport_title:["美濃油紙傘<br>共養履歷","Meinong Oil-paper Umbrella<br>Craft Passport","美濃油紙傘<br>共養履歴","美濃油紙傘<br>共養履歷","美濃油紙遮<br>共養履歷"],
+    passport_intro:["一把傘從竹林走進生活，需要職人的手，也需要有人願意讓它繼續被使用。這份履歷記錄作品如何誕生，以及你的支持正在發生什麼改變。","For an umbrella to travel from bamboo grove to daily life, it needs an artisan's hands and someone willing to keep using it. This passport records how it was made and what your support changes.","竹林から暮らしへ届くまでには、職人の手と、使い続ける人が必要です。この履歴は作品の誕生と、あなたの支援が生む変化を記録します。","一支傘對竹林行入生活，需要職人的手，嘛需要有人願意予伊繼續受使用。這份履歷記錄作品按怎出世，佮你的支持咧改變啥物。","一支遮對竹林行入生活，愛有職人个手，也愛有人願意分佢續等使用。這份履歷記錄作品仰般出世，摎若个支持正在改變麼个。"],
+    verified:["✓ 作品已驗證","✓ Work Verified","✓ 作品確認済み","✓ 作品驗證完成","✓ 作品驗證完成"],owner_connected:["✓ 共養者已連結","✓ Co-nurturer Connected","✓ 共養者連携済み","✓ 共養者連結完成","✓ 共養者連結完成"],updated:["更新於 2026.08.12","Updated 2026.08.12","更新 2026.08.12","更新佇 2026.08.12","更新在 2026.08.12"],
+    craft_story:["技藝故事","Craft Story","技芸の物語","技藝故事","技藝故事"],artisan_intro:["職人介紹","Artisan","職人紹介","職人介紹","職人介紹"],process_record:["工序紀錄","Process","工程記録","工序紀錄","工序紀錄"],revival_progress:["共養進度","Progress","共養進捗","共養進度","共養進度"],
+    story_title:["一把傘，藏著客庄對圓滿的想像。","An umbrella carrying the Hakka idea of wholeness.","一張の傘に宿る、客家の円満への願い。","一支傘，藏客庄對圓滿的想像。","一支遮，囥等客庄對圓滿个想像。"],
+    story_p1:["美濃油紙傘不只是遮雨工具。「油紙」在客語中與「有子」音近，圓形傘面也象徵圓滿，因此常出現在婚嫁、成年與重要祝福裡。","The Meinong oil-paper umbrella is more than rain gear. In Hakka, “oil paper” sounds like “having children,” while the round canopy symbolizes completeness, so it appears in weddings, coming-of-age rites, and blessings.","美濃の油紙傘は雨具だけではありません。客家語で「油紙」は「子に恵まれる」に通じ、丸い傘面は円満を象徴するため、婚礼や成人、祝いの場に用いられてきました。","美濃油紙傘毋但是遮雨的工具。「油紙」佇客語佮「有子」仝音，圓形的傘面嘛代表圓滿，致使定定出現佇婚嫁、成年佮重要祝福內。","美濃油紙遮毋單淨係遮水个工具。「油紙」在客語摎「有子」聲音相近，圓形遮面也代表圓滿，故所長透出現在婚嫁、成年摎重要祝福肚。"],
+    story_p2:["真正的價值藏在反覆開合仍能穩定的傘骨、紙張吸收桐油後的光澤，以及職人依濕度調整每一次等待的經驗。","Its value lies in ribs that remain stable through repeated use, the sheen of tung-oil-soaked paper, and the artisan's experience in adjusting every wait to the humidity.","価値は、開閉を重ねても安定する骨、桐油を吸った紙の艶、湿度に応じて待ち時間を調整する職人の経験に宿ります。","真正的價值藏佇開開關關猶原穩定的傘骨、紙吸收桐油了後的光水，佮職人照濕度調整逐擺等待的經驗。","真正个價值囥在開開合合還係穩定个遮骨、紙吸收桐油過後个光彩，摎職人照濕度調整逐擺等候个經驗。"],
+    artisan_name:["林明德｜油紙傘職人","Lin Ming-de | Oil-paper Umbrella Artisan","林明德｜油紙傘職人","林明德｜油紙傘職人","林明德｜油紙遮職人"],artisan_meta:["高雄美濃 · 從業 34 年","Meinong, Kaohsiung · 34 years","高雄・美濃 · 職歴34年","高雄美濃 · 做 34 年","高雄美濃 · 做業 34 年"],artisan_quote:["「傘骨不是削得一樣就好，要知道哪一支該多留一點韌性。」","“Umbrella ribs need more than uniformity; you must know which one needs extra resilience.”","「傘骨は同じに削ればよいのではない。どの一本にしなやかさを残すかを見極める。」","「傘骨毋是削甲仝款就好，愛知影佗一支著加留一寡韌性。」","「遮骨毋係削到共樣就好，愛知哪一支愛加留兜仔韌性。」"],artisan_bio:["林師傅從父親的工坊學藝，熟悉削竹、製骨、裱紙、上油與彩繪。近年也帶領青年助教，把原本依靠口傳與手感的判斷整理成能被學習的工序紀錄。","Master Lin learned in his father's workshop and practices bamboo shaping, frame making, paper mounting, oiling, and painting. He now mentors young assistants and turns tacit knowledge into learnable process records.","林氏は父の工房で学び、竹削り、骨組み、紙張り、油引き、彩色に精通。近年は若手を育て、口伝と感覚に頼っていた判断を学べる工程記録にまとめています。","林師傅對老爸的工房學藝，熟似削竹、製骨、裱紙、上油佮彩繪。這幾年嘛咧帶少年助教，共原本靠口傳佮手感的判斷整理做會當學的工序紀錄。","林師傅對厥爸个工坊學藝，熟識削竹、製骨、裱紙、上油摎彩繪。這幾年也帶青年助教，摎原旦靠口傳摎手感个判斷整理做做得學个工序紀錄。"],
+    process_title:["五道工序，讓一張紙成為一把能使用的傘。","Five processes turn paper into a working umbrella.","五つの工程で、一枚の紙を使える傘へ。","五道工序，予一張紙變做一支會使用的傘。","五道工序，分一張紙變做一支做得使用个遮。"],
+    process_1:["選竹與削竹","Select & Shape Bamboo","竹選び・竹削り","揀竹佮削竹","擇竹摎削竹"],process_1_desc:["挑選纖維完整的竹材，依傘骨位置調整厚薄與韌性。","Choose sound bamboo and adjust thickness and resilience by rib position.","繊維の整った竹を選び、骨の位置に応じて厚みとしなやかさを調整。","揀纖維完整的竹材，照傘骨位置調整厚薄佮韌性。","擇纖維完整个竹材，照遮骨位置調整厚薄摎韌性。"],
+    process_2:["製骨與穿線","Frame & Thread","骨組み・糸通し","製骨佮穿線","製骨摎著線"],process_2_desc:["排列傘骨、鑽孔穿線，反覆測試開合角度。","Arrange ribs, drill and thread, repeatedly testing the opening angle.","骨を並べ、穴を開けて糸を通し、開閉角度を繰り返し確認。","排列傘骨、鑽空穿線，閣再三試開合的角度。","排列遮骨、鑽空著線，來來去去試開合角度。"],
+    process_3:["裱紙","Mount Paper","紙張り","裱紙","裱紙"],process_3_desc:["將棉紙貼合傘面，修整接縫並等待完全乾燥。","Mount cotton paper, finish the seams, and allow it to dry fully.","綿紙を傘面に貼り、継ぎ目を整えて完全に乾燥。","共棉紙貼合傘面，修接縫閣等伊焦透。","摎棉紙貼合遮面，修整接縫摎等佢燥淨。"],
+    process_4:["上油與陰乾","Oil & Shade-dry","油引き・陰干し","上油佮陰焦","上油摎陰燥"],process_4_desc:["分次塗上天然桐油，依天候控制吸收與乾燥時間。","Apply natural tung oil in layers, adjusting absorption and drying to the weather.","天然桐油を数回に分けて塗り、天候に合わせて吸収と乾燥を調整。","分擺搽天然桐油，照天氣控制吸收佮焦的時間。","分擺搽天然桐油，照天時控制吸收摎燥个時間。"],
+    process_5:["彩繪與檢查","Paint & Inspect","彩色・検品","彩繪佮檢查","彩繪摎檢查"],process_5_desc:["完成圖樣、收邊與開合測試，登錄作品編號。","Complete the motif, edge finishing, opening test, and work registration.","文様、縁仕上げ、開閉試験を終え、作品番号を登録。","完成圖樣、收邊佮開合試驗，登錄作品編號。","完成圖樣、收脣摎開合試驗，登錄作品編號。"],
+    progress_title:["你的共養，正在支持下一個被看見的機會。","Your support creates the next chance for this craft to be seen.","あなたの共養が、技芸が再び見られる機会を生みます。","你的共養，咧支持下一擺予人看著的機會。","若个共養，正在支持下一擺分人看著个機會。"],progress_desc:["共養提撥用於工序記錄、地方展覽、手作教學與青年助教培訓。每完成一項任務，履歷就會新增現場紀錄。","Funds support process documentation, local exhibitions, workshops, and young assistant training. Each completed mission adds a field record.","共養資金は工程記録、地域展示、手仕事教育、若手育成に活用。任務の完了ごとに現場記録が追加されます。","共養提撥用佇工序紀錄、地方展覽、手作教學佮少年助教培訓。逐完成一項任務，履歷就會加現場紀錄。","共養提撥用在工序紀錄、地方展覽、手作教學摎青年助教培訓。逐完成一項任務，履歷就會加現場紀錄。"],
+    mission_1:["完成五場油紙傘手作坊","Complete five umbrella workshops","油紙傘ワークショップ5回","完成五場油紙傘手作坊","完成五場油紙遮手作坊"],mission_2:["完成五場地方展覽","Complete five local exhibitions","地域展示5回","完成五場地方展覽","完成五場地方展覽"],mission_3:["拍攝三支職人工序紀錄","Film three process documentaries","工程映像3本","拍三支職人工序紀錄","攝三支職人工序紀錄"],mission_4:["培訓三位青年助教","Train three young assistants","若手助手3名を育成","培訓三位少年助教","培訓三儕青年助教"],completed:["已完成","Completed","完了","完成矣","完成吔"],scheduled:["已排程","Scheduled","予定済み","排好矣","排好吔"],upcoming:["即將開始","Upcoming","開始予定","欲開始矣","就愛開始"],
+    language_title:["地方故事，應該能被更多人讀懂。","Local stories should be understood by more people.","地域の物語を、もっと多くの人に。","地方的故事，著愛予閣較濟人讀有。","地方故事，應當分還較多人看得識。"],language_desc:["本履歷提供五種語言，並預留語音導覽、字幕與影像內容的位置。","This passport supports five languages and reserves space for audio, captions, and video.","本履歴は5言語に対応し、音声ガイド、字幕、映像にも拡張できます。","這份履歷有五種語言，嘛有留語音導覽、字幕佮影像內容的位置。","這份履歷提供五種語言，也有留語音導覽、字幕摎影像內容个位所。"],scan_again:["重新模擬掃描","Scan Again","もう一度スキャン","閣模擬掃描","再過模擬掃描"],
+
+    plans_title:["選擇你想參與的深度，<br>再看清楚每一份支持會發生什麼。","Choose how deeply to take part,<br>then see exactly what your support does.","参加の深さを選び、<br>支援が生むことを確かめる。","揀你欲參與偌深，<br>閣看清楚逐份支持會發生啥物。","擇你愛參與幾深，<br>再看清楚逐份支持會發生麼个。"],plans_intro:["方案不是立即結帳的捷徑。先閱讀完整權益、資金用途、交付內容與注意事項，再決定是否加入共養。","A plan is not a shortcut to checkout. Review benefits, fund use, delivery, and notes before joining.","プランはすぐに決済するための近道ではありません。特典、資金用途、納品内容、注意事項を確認してから参加してください。","方案毋是隨時結帳的捷徑。代先讀完整權益、資金用途、交付內容佮注意事項，才決定欲加入無。","方案毋係黏時結帳个捷徑。先看完整權益、資金用途、交付內容摎注意事項，正決定愛加入無。"],plans_flow:["選擇方案","Choose Plan","プラン選択","揀方案","擇方案"],plans_detail:["閱讀詳情","Read Details","詳細確認","讀詳細","看詳細"],plans_confirm:["確認購買","Confirm Purchase","購入確認","確認購買","確認購買"],from:["起","and up","〜","起","起"],
+    seed_name:["青芽共養","Seed Plan","青芽共養","青芽共養","青芽共養"],seed_desc:["適合第一次參與，支持工序紀錄與地方推廣，持續收到復甦進度。","For first-time supporters: fund process records and local outreach, with ongoing updates.","初めての方向け。工程記録と地域発信を支え、再生の進捗を受け取れます。","適合頭一擺參與，支持工序紀錄佮地方推廣，繼續收著復甦進度。","適合第一擺參與，支持工序紀錄摎地方推廣，續等收著復甦進度。"],seed_b1:["數位共養感謝卡","Digital Thank-you Card","デジタル感謝カード","數位共養感謝卡","數位共養感謝卡"],seed_b2:["季度技藝復甦更新","Quarterly Revival Updates","四半期の再生レポート","逐季技藝復甦更新","逐季技藝復甦更新"],seed_b3:["活動與展覽優先通知","Priority Event Notices","イベント優先案内","活動佮展覽優先通知","活動摎展覽優先通知"],
+    craft_name:["匠心共養","Craft Plan","匠心共養","匠心共養","匠心共養"],craft_desc:["把一件技藝作品帶回生活，並透過 NFC 履歷持續追蹤工序與共養任務。","Bring a craft work into daily life and follow its process and missions through NFC.","技芸作品を暮らしに迎え、NFC履歴で工程と共養ミッションを追跡。","共一件技藝作品帶轉生活，閣透過 NFC 履歷追蹤工序佮共養任務。","摎一件技藝作品帶轉生活，透過 NFC 履歷續等追蹤工序摎共養任務。"],craft_b1:["共養商品一件","One Co-nurtured Work","共養作品1点","共養商品一件","共養商品一件"],craft_b2:["NFC 專屬共養履歷","Personal NFC Passport","NFC専用共養履歴","NFC 專屬共養履歷","NFC 專屬共養履歷"],craft_b3:["共養者姓名與作品連結","Member-to-work Connection","共養者名と作品の連携","共養者名姓佮作品連結","共養者名姓摎作品連結"],
+    legacy_name:["傳承共養","Legacy Plan","伝承共養","傳承共養","傳承共養"],legacy_desc:["適合深度收藏或企業參與，加入限定作品、工作坊與年度技藝追蹤。","For collectors and organizations, with limited works, workshops, and annual tracking.","本格的な収集や企業参加向け。限定作品、工房体験、年間レポートを含みます。","適合深度收藏抑是企業參與，有限定作品、工作坊佮年度技藝追蹤。","適合深度收藏抑係企業參與，有限定作品、工作坊摎年度技藝追蹤。"],legacy_b1:["限定作品或共養套組","Limited Work or Set","限定作品・共養セット","限定作品抑是共養套組","限定作品抑係共養套組"],legacy_b2:["工作坊與地方活動優惠","Workshop & Local Event Benefits","工房・地域イベント特典","工作坊佮地方活動優惠","工作坊摎地方活動優惠"],legacy_b3:["年度技藝狀態報告","Annual Craft Report","年間技芸レポート","年度技藝狀態報告","年度技藝狀態報告"],recommended:["最受歡迎","Most Popular","人気プラン","上受歡迎","盡受歡迎"],view_plan_detail:["查看方案詳細內容","View Plan Details","プラン詳細を見る","看方案詳細內容","看方案詳細內容"],before_join_title:["購買以前，先知道支持去了哪裡。","Before buying, know where your support goes.","購入前に、支援の行き先を知る。","欲買進前，代先知影支持去佗位。","買進前，先知支持去在哪位。"],before_join_p1:["所有提撥比例、製作期程與交付內容，都會在方案詳細頁清楚說明。正式合作後，實際分配也會同步更新於 NFC 共養履歷。","Allocation, production time, and delivery are explained on the detail page. Actual distribution will be updated in the NFC passport after formal collaboration.","配分、制作期間、納品内容は詳細ページで明示します。正式連携後の実際の配分はNFC履歴にも反映されます。","所有提撥比例、製作時間佮交付內容，攏會佇方案詳細頁講清楚。正式合作了後，實際分配嘛會更新佇 NFC 共養履歷。","所有提撥比例、製作時間摎交付內容，都會在方案詳細頁講清楚。正式合作過後，實際分配也會更新在 NFC 共養履歷。"],before_join_p2:["手工作品可能保留天然材質與製作差異；若方案包含實體作品，確認購買前會再次顯示預計交付時間。","Handmade works retain natural variations. If a physical work is included, delivery time appears again before confirmation.","手仕事には素材と制作上の個体差があります。実物を含む場合、確認前に納期を再表示します。","手工作品可能會保留天然材質佮製作差異；若方案有實體作品，確認購買進前會閣顯示交付時間。","手工作品可能保留天然材料摎製作差異；係方案有實體作品，確認購買進前會再顯示交付時間。"],
+    all_plans:["所有共養方案","All Support Plans","すべての共養プラン","所有共養方案","所有共養方案"],plan_not_checkout:["這一頁還不是結帳頁","This is not checkout yet","まだ決済画面ではありません","這頁猶毋是結帳頁","這頁還毋係結帳頁"],read_before_buy:["請先完整閱讀方案內容，再確認是否購買。","Read the full plan before confirming your purchase.","内容をすべて確認してから購入へ進んでください。","請先共方案內容讀完整，才確認欲買無。","請先看淨方案內容，正確認愛買無。"],choose_plan:["✓ 選擇方案","✓ Plan Selected","✓ プラン選択","✓ 揀方案","✓ 擇方案"],read_detail:["● 閱讀詳情","● Read Details","● 詳細確認","● 讀詳細","● 看詳細"],confirm_buy:["○ 確認購買","○ Confirm Purchase","○ 購入確認","○ 確認購買","○ 確認購買"],receive_title:["你會收到什麼","What You Receive","受け取れるもの","你會收著啥物","你會收著麼个"],fund_title:["支持如何被使用","How Funds Are Used","支援金の使い道","支持按怎使用","支持仰般使用"],fund_artisan:["職人製作與工坊收入","Artisan & Workshop Income","職人・工房収入","職人製作佮工房收入","職人製作摎工坊收入"],fund_material:["材料、包裝與交付","Materials, Packaging & Delivery","材料・包装・納品","材料、包裝佮交付","材料、包裝摎交付"],fund_revival:["復甦任務與地方推廣","Revival Missions & Outreach","再生ミッション・地域発信","復甦任務佮地方推廣","復甦任務摎地方推廣"],fund_digital:["數位履歷與內容維護","Digital Passport & Content","デジタル履歴・内容維持","數位履歷佮內容維護","數位履歷摎內容維護"],fund_note:["此比例為競賽提案模型；正式合作時將與職人共同確認並公開更新。","This allocation is a proposal model and will be confirmed with artisans before publication.","この比率は提案モデルです。正式連携時に職人と確認し、公開更新します。","這个比例是競賽提案模型；正式合作時會佮職人做伙確認閣公開更新。","這比例係競賽提案模型；正式合作時會摎職人共下確認摎公開更新。"],delivery_title:["交付與注意事項","Delivery & Notes","納品・注意事項","交付佮注意事項","交付摎注意事項"],note_1:["數位內容會在付款確認後寄送帳戶啟用通知。","Account activation is sent after payment confirmation.","決済確認後、アカウント有効化案内を送信します。","數位內容會佇付款確認了後寄帳戶啟用通知。","數位內容會在付款確認過後寄帳戶啟用通知。"],note_2:["若包含實體作品，預計交付期為 14–60 個工作天，依工藝類型另行確認。","Physical works take 14–60 business days, confirmed by craft type.","実物作品は工芸種別により14〜60営業日を予定。","若有實體作品，交付期大約 14–60 个工作天，照工藝類型另外確認。","係有實體作品，交付期大約 14–60 個工作日，照工藝類型另外確認。"],note_3:["天然材質與手工製作會保留合理差異，不視為瑕疵。","Natural and handmade variations are not defects.","天然素材と手仕事による個体差は不良ではありません。","天然材質佮手工製作的差異，毋算瑕疵。","天然材料摎手工製作个差異，毋算瑕疵。"],note_4:["正式付款前仍會顯示最後一次方案、金額與交付確認。","Plan, amount, and delivery are shown again before payment.","支払い前にプラン、金額、納品内容を再確認します。","正式付款進前猶會閣顯示方案、金額佮交付確認。","正式付款進前還會再顯示方案、金額摎交付確認。"],support_amount:["支持金額","Support Amount","支援金額","支持金額","支持金額"],quantity:["數量","Quantity","数量","數量","數量"],agree_detail:["我已閱讀方案內容、交付時間與手工作品差異說明。","I have read the plan, delivery time, and handmade variation notice.","プラン、納期、手仕事の個体差について確認しました。","我已經讀方案內容、交付時間佮手工作品差異說明。","𠊎看吔方案內容、交付時間摎手工作品差異說明。"],confirm_purchase:["確認方案並前往購買","Confirm & Continue to Purchase","確認して購入へ","確認方案閣去購買","確認方案摎前往購買"],back_plans:["返回比較其他方案","Back to Compare Plans","プラン比較に戻る","轉去比較其他方案","轉去比其他方案"]
+  };
+
+  Object.assign(M,{
+    seed_detail_1_title:["數位共養感謝卡","Digital Co-nurture Card","デジタル共養感謝カード","數位共養感謝卡","數位共養感謝卡"],seed_detail_1_desc:["記錄支持日期、技藝名稱與共養者姓名。","Records support date, craft, and supporter name.","支援日、技芸名、共養者名を記録。","記錄支持日期、技藝名佮共養者名姓。","記錄支持日期、技藝名摎共養者名姓。"],
+    seed_detail_2_title:["季度復甦進度","Quarterly Revival Update","四半期再生レポート","逐季復甦進度","逐季復甦進度"],seed_detail_2_desc:["每季收到展覽、教學與工序記錄的更新摘要。","Quarterly summary of exhibitions, teaching, and process records.","展示、教育、工程記録の四半期まとめ。","逐季收著展覽、教學佮工序紀錄摘要。","逐季收著展覽、教學摎工序紀錄摘要。"],
+    seed_detail_3_title:["活動優先通知","Priority Event Notices","イベント優先案内","活動優先通知","活動優先通知"],seed_detail_3_desc:["地方展覽與公開工作坊開放時優先收到消息。","Early notices for local exhibitions and public workshops.","地域展示と公開工房の先行案内。","地方展覽佮公開工作坊開放時代先收著消息。","地方展覽摎公開工作坊開放時先收著消息。"],
+    craft_detail_1_title:["共養商品一件","One Co-nurtured Work","共養作品1点","共養商品一件","共養商品一件"],craft_detail_1_desc:["依選擇的工藝系列提供可使用或收藏的手工作品。","A usable or collectible handmade work from your selected craft series.","選んだ工芸シリーズの、使える・収蔵できる手仕事作品。","照所揀的工藝系列提供會當用抑是收藏的手工作品。","照所擇个工藝系列提供做得用抑係收藏个手工作品。"],
+    craft_detail_2_title:["NFC 專屬共養履歷","Personal NFC Passport","NFC専用共養履歴","NFC 專屬共養履歷","NFC 專屬共養履歷"],craft_detail_2_desc:["查看技藝故事、職人介紹、工序記錄與復甦進度。","View craft stories, artisan profiles, process records, and revival progress.","技芸の物語、職人、工程、再生進捗を確認。","看技藝故事、職人介紹、工序紀錄佮復甦進度。","看技藝故事、職人介紹、工序紀錄摎復甦進度。"],
+    craft_detail_3_title:["作品與會員連結","Work-to-member Link","作品と会員の連携","作品佮會員連結","作品摎會員連結"],craft_detail_3_desc:["作品編號會加入共養帳戶，後續掃描即可開啟。","The work ID is saved to your account and opens by scanning.","作品番号をアカウントに保存し、スキャンで開けます。","作品編號會加入共養帳戶，後擺掃描就會當開啟。","作品編號會加入共養帳戶，後擺掃描就做得打開。"],
+    craft_detail_4_title:["季度活動更新","Quarterly Activity Updates","四半期活動更新","逐季活動更新","逐季活動更新"],craft_detail_4_desc:["收到展覽、工作坊與地方合作進度。","Receive exhibition, workshop, and local partnership updates.","展示、工房、地域連携の進捗を受信。","收著展覽、工作坊佮地方合作進度。","收著展覽、工作坊摎地方合作進度。"],
+    legacy_detail_1_title:["限定作品或共養套組","Limited Work or Set","限定作品・共養セット","限定作品抑是共養套組","限定作品抑係共養套組"],legacy_detail_1_desc:["依當期合作內容提供限定作品、編號或主題套組。","Limited works, numbers, or themed sets based on the current collaboration.","当期連携に応じた限定作品、番号、テーマセット。","照這期合作內容提供限定作品、編號抑是主題套組。","照這期合作內容提供限定作品、編號抑係主題套組。"],
+    legacy_detail_2_title:["工作坊與地方活動優惠","Workshop & Local Event Benefits","工房・地域イベント特典","工作坊佮地方活動優惠","工作坊摎地方活動優惠"],legacy_detail_2_desc:["享有指定場次優先報名與共養者優惠。","Priority registration and co-nurturer rates for selected sessions.","指定回の先行申込と共養者優待。","有指定場次優先報名佮共養者優惠。","有指定場次優先報名摎共養者優惠。"],
+    legacy_detail_3_title:["年度技藝狀態報告","Annual Craft Report","年間技芸レポート","年度技藝狀態報告","年度技藝狀態報告"],legacy_detail_3_desc:["完整整理職人合作、資金用途與復甦任務成果。","A full report on artisans, fund use, and revival mission outcomes.","職人連携、資金用途、再生成果の年間報告。","完整整理職人合作、資金用途佮復甦任務成果。","完整整理職人合作、資金用途摎復甦任務成果。"],
+    legacy_detail_4_title:["共養者專屬標記","Co-nurturer Recognition","共養者名表示","共養者專屬標記","共養者專屬標記"],legacy_detail_4_desc:["姓名或組織名稱可依意願登錄於年度支持名錄。","Your name or organization may be listed in the annual supporter record.","希望に応じて氏名・組織名を年間支援者名簿に掲載。","名姓抑是組織名會當照意願登錄佇年度支持名錄。","名姓抑係組織名做得照意願登錄在年度支持名錄。"]
+  });
+
+  const phraseKeys={
+    "記藝共養所":"brand","品牌故事":"nav_story","共養模式":"nav_model","掃描我的NFC":"nav_nfc","商品頁":"nav_products","共養方案":"nav_plans","聯絡我們":"nav_contact","加入共養":"join","探索更多作品":"explore_more","讓每一次共養，都成為文化延續的力量。":"footer_line",
+    "探索共養商品":"explore_more","查看完整 Demo":"nav_nfc","查看 NFC Demo":"nav_nfc","體驗數位履歷":"nav_nfc","商品系列":"nav_products","首頁":"home","回到首頁":"home",
+    "選擇方案":"plans_flow","查看方案詳細內容":"view_plan_detail","會員登入":"login","建立帳戶":"register","電子信箱":"email","密碼":"password","姓名":"name"
+  };
+  const legacy={
+    "帶走一件紀念品，":"Take home a keepsake,|記念品を持ち帰り、|帶走一件紀念品，|帶轉一件紀念品，",
+    "也留下台灣的":"and keep alive|台湾に|嘛留落台灣的|也留落臺灣个",
+    "一門技藝。":"a Taiwanese craft.|一つの技芸を残す。|一門技藝。|一門技藝。",
+    "讓一門技藝，":"Let a craft|一つの技芸を、|予一門技藝，|分一門技藝，",
+    "重新成為生活。":"return to daily life.|暮らしへ。|閣轉做生活。|再過成為生活。",
+    "美濃油紙傘":"Meinong Oil-paper Umbrella|美濃油紙傘|美濃油紙傘|美濃油紙遮",
+    "竹編生活小物":"Bamboo Daily Objects|竹編みの生活小物|竹編生活小物|竹編生活細物",
+    "春仔花共養飾品":"Co-nurtured Silk-flower Jewelry|春仔花 共養装身具|春仔花共養飾品|春仔花共養飾品",
+    "一起讓技藝重新被需要。":"Let craft be needed again.|技芸が再び必要とされる未来へ。|做伙予技藝閣再受需要。|共下分技藝再過有需要。",
+    "記藝共養所將職人手藝、故事與製作過程，轉化為能被收藏、被感應、被持續追蹤的共養型物件。":"We transform craft, stories, and making into co-nurtured objects that can be collected, scanned, and followed over time.|職人の技、物語、制作工程を、収蔵・スキャン・継続追跡できる共養作品へ変えます。|阮共職人的手藝、故事佮製作過程，變做會當收藏、感應、一直追蹤的共養物件。|𠊎等摎職人手藝、故事摎製作過程，轉做做得收藏、感應、續等追蹤个共養物件。",
+    "每一次支持，都讓一門技藝重新被需要。":"Every act of support makes a craft needed again.|一つひとつの支援が、技芸を再び必要なものにします。|逐擺支持，攏予一門技藝閣再受需要。|逐擺支持，都分一門技藝再過有需要。",
+    "「我們想做的不是保存一件老東西，而是讓一門技藝重新被需要。」":"“We are not preserving an old object; we are making a craft needed again.”|「古い物を保存するのではなく、技芸を再び必要なものにしたい。」|「阮欲做的毋是保存老物件，是欲予一門技藝閣再受需要。」|「𠊎等想做个毋係保存老東西，係分一門技藝再過有需要。」",
+    "不是沒有人在乎，":"The problem is not a lack of care,|関心がないのではなく、|毋是無人佇意，|毋係無人留意，",
+    "而是不知道該如何支持。":"but not knowing how to help.|支え方が分からないのです。|是毋知按怎支持。|係毋知仰般支持。",
+    "我們把「購買」變成「共養」。":"We turn purchasing into co-nurturing.|「購入」を「共養」へ。|阮共「購買」變做「共養」。|𠊎等摎「購買」變做「共養」。",
+    "NFC 是入口，技藝履歷才是核心。":"NFC is the entrance; the living craft passport is the core.|NFCは入口。技芸履歴こそが中心です。|NFC 是入口，技藝履歷才是核心。|NFC 係入口，技藝履歷正係核心。",
+    "正在被重新需要的技藝":"Crafts becoming needed again|再び必要とされる技芸|咧閣再受需要的技藝|正在再過有需要个技藝",
+    "讓支持被看見，也讓技藝被需要。":"Make support visible and craft needed.|支援を見える形にし、技芸を必要なものへ。|予支持看會著，嘛予技藝受需要。|分支持看得著，也分技藝有需要。",
+    "不是把傳統留在展櫃，而是讓它重新被購買、被使用，也被下一個世代理解。每件作品都連結一位職人、一套工序與一份持續更新的數位履歷。":"Tradition should not stay behind glass. It should be bought, used, and understood by the next generation. Each work connects an artisan, a process, and an evolving digital passport.|伝統を展示ケースに残すのではなく、再び購入され、使われ、次の世代に理解されるものへ。各作品は職人、工程、更新され続けるデジタル履歴につながります。|毋是共傳統留佇展櫃，是欲予伊閣受購買、受使用，嘛予後一代了解。逐件作品攏連結一个職人、一套工序佮一份一直更新的數位履歷。|毋係摎傳統留在展櫃，係分佢再過有人買、有人用，也分下一代了解。逐件作品都連結一儕職人、一套工序摎一份續等更新个數位履歷。",
+    "「我們賣的不是懷舊，而是一件今天仍值得存在的作品。」":"“We do not sell nostalgia. We offer work still worth living with today.”|「売るのは懐古ではなく、今も存在する価値のある作品です。」|「阮賣的毋是懷舊，是今仔日猶值得存在的作品。」|「𠊎等賣个毋係懷舊，係今晡日還值得存在个作品。」",
+    "三種作品，三種讓技藝留下來的方式。":"Three works, three ways for craft to endure.|三つの作品、技芸を残す三つの方法。|三種作品，三種予技藝留落來的方式。|三種作品，三種分技藝留落來个方式。",
+    "購買完成，":"After purchase,|購入のあと、|買好勢了後，|買好過後，",
+    "故事才開始。":"the story begins.|物語が始まります。|故事才開始。|故事正開始。",
+    "真正被使用，":"Only when it is used|使われてこそ、|真正受使用，|真正有人用，",
+    "才是最長久的展示。":"does it remain on display the longest.|最も長く生きる展示になります。|才是上久的展示。|正係最長久个展示。",
+    "把編織的節奏，":"Bring the rhythm of weaving|編みのリズムを、|共編織的節奏，|摎編織个節奏，",
+    "放回每天。":"back into every day.|日々の暮らしへ。|放轉逐工。|放轉逐日。",
+    "把祝福，":"Turn a blessing|祝福を、|共祝福，|摎祝福，",
+    "纏成一朵花。":"into a flower.|一輪の花へ。|纏做一蕊花。|纏做一蕊花。",
+    "撐起一把，":"Open an umbrella|一本の傘を開き、|撐起一支，|擎起一支，",
+    "會繼續生長的傘。":"that keeps growing.|成長し続ける作品へ。|會繼續生長的傘。|會續等生長个遮。",
+    "一起讓技藝重新被需要。":"Let craft be needed again.|技芸が再び必要とされる未来へ。|做伙予技藝閣再受需要。|共下分技藝再過有需要。",
+    "職人合作、企業 ESG、商品共養、活動邀約，都可以透過此表單與我們聯繫。":"Use this form for artisan partnerships, corporate ESG, co-nurtured products, and event invitations.|職人連携、企業ESG、商品共養、イベント依頼はこちらから。|職人合作、企業 ESG、商品共養、活動邀請，攏會當用這張表單聯絡阮。|職人合作、企業 ESG、商品共養、活動邀約，都做得用這張表單聯絡𠊎等。",
+    "我想詢問的項目":"I am interested in|お問い合わせ内容|我想欲問的項目|𠊎想問个項目",
+    "成為共養者":"Become a Co-nurturer|共養者になる|成做共養者|成為共養者",
+    "職人合作":"Artisan Partnership|職人連携|職人合作|職人合作",
+    "企業 ESG 合作":"Corporate ESG|企業ESG連携|企業 ESG 合作|企業 ESG 合作",
+    "活動邀約":"Event Invitation|イベント依頼|活動邀請|活動邀約",
+    "送出":"Send|送信|送出|送出"
+  };
+  Object.entries(legacy).forEach(([zh,value])=>{const parts=value.split("|");const key="legacy_"+Object.keys(M).length;M[key]=[zh,...parts];phraseKeys[zh]=key;});
+  const localizeNan=text=>text
+    .replaceAll("我們","阮").replaceAll("你們","恁").replaceAll("這裡","遮").replaceAll("這個","這个")
+    .replaceAll("什麼","啥物").replaceAll("如何","按怎").replaceAll("與","佮").replaceAll("和","佮")
+    .replaceAll("讓","予").replaceAll("被","受").replaceAll("不是","毋是").replaceAll("不只","毋但")
+    .replaceAll("可以","會當").replaceAll("能夠","會當").replaceAll("回到","轉去").replaceAll("知道","知影")
+    .replaceAll("每一","逐一").replaceAll("正在","咧").replaceAll("之後","了後").replaceAll("裡","內");
+  const localizeHak=text=>text
+    .replaceAll("我們","𠊎等").replaceAll("我的","𠊎个").replaceAll("你的","若个").replaceAll("這裡","這位")
+    .replaceAll("這個","這个").replaceAll("什麼","麼个").replaceAll("如何","仰般").replaceAll("與","摎")
+    .replaceAll("和","摎").replaceAll("讓","分").replaceAll("被","分人").replaceAll("不是","毋係")
+    .replaceAll("不只","毋單淨").replaceAll("可以","做得").replaceAll("能夠","做得").replaceAll("回到","轉到")
+    .replaceAll("知道","知").replaceAll("每一","逐一").replaceAll("正在","在該").replaceAll("之後","過後").replaceAll("的","个");
+  Object.entries(window.JIYI_LEGACY_FULL||{}).forEach(([zh,row])=>{
+    const key="full_"+Object.keys(M).length;
+    M[key]=[zh,row[0],row[1],localizeNan(zh),localizeHak(zh)];
+    phraseKeys[zh]=key;
+  });
+
+  const originals=new WeakMap();
+  function valueFor(key,lang){const row=M[key];return row ? (row[langIndex[lang]] || row[0]) : null;}
+  function translate(lang){
+    document.documentElement.lang={zh:"zh-Hant",en:"en",ja:"ja",nan:"nan",hak:"hak"}[lang]||"zh-Hant";
+    document.querySelectorAll("[data-i18n]").forEach(el=>{const value=valueFor(el.dataset.i18n,lang);if(value!==null)el.innerHTML=value;});
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(node){return /\S/.test(node.nodeValue)&&!["SCRIPT","STYLE","TEXTAREA"].includes(node.parentElement?.tagName)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;}});
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      if(!originals.has(node))originals.set(node,node.nodeValue);
+      const original=originals.get(node);const trimmed=original.trim();const key=phraseKeys[trimmed];
+      if(!key)return;const translated=valueFor(key,lang);const lead=original.match(/^\s*/)[0],tail=original.match(/\s*$/)[0];node.nodeValue=lead+translated+tail;
+    });
+    document.querySelectorAll("input[placeholder]").forEach(input=>{
+      if(!input.dataset.originalPlaceholder)input.dataset.originalPlaceholder=input.placeholder;
+      const map={"你的姓名":{en:"Your name",ja:"お名前",nan:"你的名姓",hak:"若个名姓"},"至少 8 個字元":{en:"At least 8 characters",ja:"8文字以上",nan:"至少 8 个字",hak:"至少 8 隻字"}}[input.dataset.originalPlaceholder];
+      input.placeholder=map?.[lang]||input.dataset.originalPlaceholder;
+    });
+    const selector=document.querySelector("[data-language-select]");if(selector)selector.value=lang;
+    localStorage.setItem("jiyiLanguage",lang);
+    window.dispatchEvent(new CustomEvent("jiyi:language",{detail:{lang}}));
+  }
+  function install(){
+    const navRight=document.querySelector(".navbar .nav-right");
+    if(navRight&&!document.querySelector("[data-language-select]")){
+      const control=document.createElement("label");control.className="language-control";control.title="語言設定";
+      const select=document.createElement("select");select.dataset.languageSelect="";select.setAttribute("aria-label","語言設定");
+      Object.entries(languageNames).forEach(([code,name])=>{const option=document.createElement("option");option.value=code;option.textContent=name;select.appendChild(option);});
+      control.appendChild(select);navRight.insertBefore(control,navRight.firstChild);select.addEventListener("change",()=>translate(select.value));
+    }
+    const saved=localStorage.getItem("jiyiLanguage")||"zh";translate(langIndex[saved]===undefined?"zh":saved);
+  }
+  install();
+})();
 
 </script></body></html>
