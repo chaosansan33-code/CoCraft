@@ -1654,12 +1654,20 @@ body.storefront {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
+/* V6: focused NFC guide, product checkout and confirmations */
+.nfc-guide__book{min-width:0}.nfc-guide__counter{display:flex;align-items:center;gap:18px;margin-bottom:18px;color:var(--v3-red);font-weight:900}.nfc-guide__counter i{height:6px;flex:1;overflow:hidden;border-radius:999px;background:#dfd1bd}.nfc-guide__counter b{display:block;height:100%;width:25%;border-radius:inherit;background:var(--v3-red);transition:width .3s ease}.nfc-guide__page{display:none;min-height:430px;padding:clamp(28px,4vw,54px);border:1px solid var(--v3-line);border-radius:30px;background:#fffaf4;box-shadow:var(--v3-shadow)}.nfc-guide__page.is-active{display:block}.nfc-guide__page>span{font:700 2rem/1 "Cormorant Garamond",serif;color:var(--v3-gold)}.nfc-guide__page h3{margin:20px 0 8px;font-size:clamp(1.8rem,3vw,2.7rem)}.nfc-guide__page p{margin:0;color:var(--v3-copy)}.guide-mock{position:relative;min-height:170px;margin-bottom:30px;padding:36px;border-radius:22px;background:#211712;color:#fff;display:flex;flex-direction:column;justify-content:center}.guide-mock b{font-size:1.1rem}.guide-mock small{margin-top:8px;color:#d6c7bb}.guide-target{position:absolute!important;top:20px;right:22px;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#c49a5b;color:#211712!important;animation:guidePulse 1.8s infinite}@keyframes guidePulse{50%{box-shadow:0 0 0 12px #c49a5b22}}.nfc-guide__actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.nfc-guide__actions [hidden]{display:none!important}
+.artisan-journal-v5{padding-top:20px}.artisan-journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px}.artisan-journal-grid article{overflow:hidden;border:1px solid var(--v3-line);border-radius:28px;background:#fffaf4;box-shadow:0 18px 55px #37251916}.artisan-journal-grid img{width:100%;height:260px;object-fit:cover}.artisan-journal-grid article div{padding:26px}.artisan-journal-grid time{color:var(--v3-red);font-weight:900;font-size:.78rem}.artisan-journal-grid h3{margin:8px 0;font-size:1.35rem}.artisan-journal-grid p{margin:0}
+.checkout-v6-main{width:min(1320px,90%);margin:auto;padding:170px 0 110px}.checkout-v6-crumb{display:flex;gap:10px;margin-bottom:24px;color:var(--v3-copy);font-weight:800}.checkout-v6-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:start}.checkout-v6-product,.checkout-v6-form-card{overflow:hidden;border:1px solid var(--v3-line);border-radius:36px;background:#fffaf4;box-shadow:var(--v3-shadow)}.checkout-v6-product>img{width:100%;height:470px;object-fit:cover}.checkout-v6-product__copy{padding:clamp(30px,5vw,58px)}.checkout-v6-product h1{margin:8px 0 18px;font-size:clamp(2.6rem,5vw,5rem)}.checkout-v6-product p{color:var(--v3-copy)}.checkout-v6-product ul{list-style:none;padding:20px 0;margin:22px 0;border-block:1px solid var(--v3-line);display:grid;gap:10px}.checkout-v6-product li::before{content:"✓";margin-right:10px;color:var(--v3-green);font-weight:900}.checkout-v6-total,.checkout-v6-payline,.success-v6-summary{display:flex;align-items:center;justify-content:space-between;gap:20px}.checkout-v6-total strong{font:700 2.7rem/1 "Cormorant Garamond",serif;color:var(--v3-red)}.checkout-v6-form-card{position:sticky;top:160px;padding:clamp(30px,5vw,58px)}.checkout-v6-form-card h2{font-size:clamp(2.2rem,4vw,4rem);margin:8px 0 12px}.checkout-v6-demo{padding:12px 16px;border-radius:12px;background:#eadbc5;color:var(--v3-copy)}.checkout-v6-form-card form{display:grid;gap:18px;margin-top:26px}.checkout-v6-form-card label{display:grid;gap:7px;font-weight:900}.checkout-v6-form-card input{width:100%;height:54px;padding:0 16px;border:1px solid var(--v3-line);border-radius:12px;background:#fff;font:inherit}.checkout-v6-form-card small{color:#8a6b57;font-weight:700}.checkout-v6-payline{padding:18px 0;border-top:1px solid var(--v3-line)}.checkout-v6-payline b{font-size:1.4rem;color:var(--v3-red)}.success-v6[hidden]{display:none}.success-v6{position:fixed;z-index:9999;inset:0;padding:22px;background:#160f0bcc;backdrop-filter:blur(12px);display:grid;place-items:center}.success-v6-card{width:min(600px,100%);padding:clamp(34px,6vw,70px);border-radius:34px;background:#fffaf4;text-align:center;box-shadow:0 30px 100px #0006}.success-v6-mark{width:74px;height:74px;margin:0 auto 20px;display:grid;place-items:center;border-radius:50%;background:var(--v3-green);color:#fff;font-size:2rem}.success-v6-card h2{margin:8px 0;font-size:clamp(2.6rem,5vw,4.8rem)}.success-v6-card>p:not(.mv3-kicker){color:var(--v3-copy)}.success-v6-summary{margin:25px 0;padding:18px;border-block:1px solid var(--v3-line)}.success-v6-card .mv3-actions{justify-content:center}.modal-open{overflow:hidden}.contact-success{width:min(700px,100%);padding:42px;border:1px solid var(--line);border-radius:var(--radius-xl);background:var(--paper);box-shadow:var(--shadow);display:grid;grid-template-columns:70px 1fr;gap:24px}.contact-success[hidden]{display:none}.contact-success>span{width:58px;height:58px;display:grid;place-items:center;border-radius:50%;background:var(--sage);color:#fff;font-size:1.5rem}.contact-success h2{font-size:clamp(2rem,4vw,3.5rem);margin:8px 0}.contact-success p{margin-bottom:25px;color:var(--ink-soft)}
+@media(max-width:980px){.checkout-v6-layout{grid-template-columns:1fr}.checkout-v6-form-card{position:static}.artisan-journal-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.nfc-guide__page{min-height:390px;padding:22px}.guide-mock{padding:28px 20px}.artisan-journal-grid{grid-template-columns:1fr}.artisan-journal-grid img{height:230px}.checkout-v6-main{width:calc(100% - 32px);padding:110px 0 72px}.checkout-v6-product>img{height:340px}.checkout-v6-product__copy,.checkout-v6-form-card{padding:28px 20px}.checkout-v6-total{align-items:flex-start;flex-direction:column}.checkout-v6-total strong{font-size:2.3rem}.success-v6-card .mv3-actions{flex-direction:column}.success-v6-card .mv3-btn{width:100%}.contact-success{grid-template-columns:1fr;padding:28px 22px}}
+
+
 </style>
 </head>
 <body class="market-v3">
   <nav class="navbar solid" id="navbar" aria-label="主要導覽">
     <a class="logo" href="index.html">記藝共養所</a>
-    <div class="nav-center"><a href="index.html#story">品牌故事</a><a href="index.html#model">共養模式</a><a href="nfc.html">掃描我的NFC</a><a href="products.html" aria-current="page">商品頁</a><a href="plans.html">共養方案</a></div>
+    <div class="nav-center"><a href="index.html#story">品牌故事</a><a href="index.html#model">共養模式</a><a href="nfc.html">掃描我的NFC</a><a href="products.html" aria-current="page">商品頁</a></div>
     <div class="nav-right"><a class="nav-pill" href="contact.html">聯絡我們</a></div>
     <button class="mobile-nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false">☰</button>
   </nav>
@@ -1777,6 +1785,58 @@ document.querySelectorAll("[data-auth-tab]").forEach(tab=>{
     document.querySelectorAll("[data-auth-tab]").forEach(item=>item.classList.toggle("is-active", item === tab));
     document.querySelectorAll("[data-auth-panel]").forEach(panel=>panel.classList.toggle("is-active", panel.dataset.authPanel === tab.dataset.authTab));
   });
+});
+
+// NFC guide: one clear instruction per page
+const guidePages=[...document.querySelectorAll("[data-guide-page]")];
+if(guidePages.length){
+  let guideIndex=0;
+  const renderGuide=()=>{
+    guidePages.forEach((page,index)=>page.classList.toggle("is-active",index===guideIndex));
+    const count=document.querySelector("[data-guide-count]");
+    const progress=document.querySelector("[data-guide-progress]");
+    const previous=document.querySelector("[data-guide-prev]");
+    const next=document.querySelector("[data-guide-next]");
+    const confirm=document.querySelector("[data-guide-confirm]");
+    if(count) count.textContent=`${guideIndex+1} / ${guidePages.length}`;
+    if(progress) progress.style.width=`${((guideIndex+1)/guidePages.length)*100}%`;
+    if(previous) previous.hidden=guideIndex===0;
+    if(next) next.hidden=guideIndex===guidePages.length-1;
+    if(confirm) confirm.hidden=guideIndex!==guidePages.length-1;
+  };
+  document.querySelector("[data-guide-next]")?.addEventListener("click",()=>{guideIndex=Math.min(guideIndex+1,guidePages.length-1);renderGuide();});
+  document.querySelector("[data-guide-prev]")?.addEventListener("click",()=>{guideIndex=Math.max(guideIndex-1,0);renderGuide();});
+  renderGuide();
+}
+
+// Product-specific demo checkout
+const checkout=document.querySelector("[data-checkout]");
+if(checkout){
+  const products={
+    umbrella:{name:"美濃油紙傘",price:"NT$10,000",image:"images/umbrella-detail.jpg"},
+    bamboo:{name:"竹編生活小物",price:"NT$333",image:"images/bamboo-detail.jpg"},
+    chunzihua:{name:"春仔花共養飾品",price:"NT$2,000",image:"images/chunzihua-detail.jpg"}
+  };
+  const key=new URLSearchParams(location.search).get("product") || "umbrella";
+  const product=products[key] || products.umbrella;
+  checkout.dataset.product=key;
+  document.querySelectorAll("[data-checkout-name]").forEach(el=>{el.textContent=product.name;el.dataset.i18n=`checkout_${key}_name`;});
+  document.querySelectorAll("[data-checkout-price]").forEach(el=>el.textContent=product.price);
+  const image=document.querySelector("[data-checkout-image]");
+  if(image){image.src=product.image;image.alt=product.name;}
+  document.querySelector("[data-checkout-form]")?.addEventListener("submit",event=>{
+    event.preventDefault();
+    const success=document.querySelector("[data-checkout-success]");
+    if(success){success.hidden=false;document.body.classList.add("modal-open");success.querySelector("a")?.focus();}
+  });
+}
+
+// Contact form confirmation
+document.querySelector("[data-contact-form]")?.addEventListener("submit",event=>{
+  event.preventDefault();
+  event.currentTarget.hidden=true;
+  const success=document.querySelector("[data-contact-success]");
+  if(success){success.hidden=false;success.scrollIntoView({behavior:"smooth",block:"center"});}
 });
 
 // V5 plan detail content and purchase confirmation gate
@@ -1987,6 +2047,15 @@ window.JIYI_LEGACY_FULL={
     legacy_detail_4_title:["共養者專屬標記","Co-nurturer Recognition","共養者名表示","共養者專屬標記","共養者專屬標記"],legacy_detail_4_desc:["姓名或組織名稱可依意願登錄於年度支持名錄。","Your name or organization may be listed in the annual supporter record.","希望に応じて氏名・組織名を年間支援者名簿に掲載。","名姓抑是組織名會當照意願登錄佇年度支持名錄。","名姓抑係組織名做得照意願登錄在年度支持名錄。"]
   });
 
+  Object.assign(M,{
+    previous:["上一步","Previous","前へ","頂一步","上一步"],next:["下一步","Next","次へ","後一步","下一步"],guide_confirm:["我已了解，開啟共養履歷","Got it—open my passport","確認して共養履歴を開く","我知影矣，開共養履歷","𠊎了解吔，打開共養履歷"],
+    guide_mock_work:["點這裡查看作品資料","Tap here to view work details","ここを押して作品情報を見る","點遮看作品資料","點這位看作品資料"],guide_mock_artisan:["往下滑並按下「職人介紹」","Scroll down and tap “Artisan”","下へスクロールして「職人紹介」を押す","向下滑閣點「職人介紹」","向下滑摎點「職人介紹」"],guide_mock_progress:["按進度條查看近期任務","Tap the progress bar for recent missions","進捗バーで最新タスクを見る","點進度條看近期任務","點進度條看這駁仔任務"],guide_mock_language:["按右上角語言選單切換","Use the language menu at top right","右上の言語メニューで切り替え","點正手爿頂懸的語言選單","點正手片頂高个語言選單"],
+    artisan_journal:["近期師傅故事","Recent Artisan Stories","最近の職人物語","近期師傅故事","這駁仔師傅故事"],artisan_journal_title:["近期的師傅故事紀錄","Recent stories from the artisan","最近の職人ストーリー","近期的師傅故事紀錄","這駁仔个師傅故事紀錄"],artisan_journal_desc:["不是只有完成品。工坊裡的新發現、一次教學與一段生活，也會持續寫進這件作品的履歷。","Workshop discoveries, lessons, and daily moments continue to enter this passport.","工房での発見、指導、日々の出来事もこの履歴に加わります。","工坊的新發現、教學佮生活，嘛會一直寫入作品履歷。","工坊个新發現、教學摎生活，也會續等寫入作品履歷。"],
+    journal_1_title:["替下一批傘骨挑竹","Selecting bamboo for the next frames","次の傘骨の竹を選ぶ","替後一批傘骨揀竹","同下一批遮骨擇竹"],journal_1_desc:["林師傅帶青年助教辨認竹節與纖維走向，說明哪些細微差異會影響開傘的手感。","Master Lin shows how nodes and grain affect the feel of opening an umbrella.","林師傅が竹の節と繊維が開閉感に与える影響を教えました。","林師傅教青年助教認竹節佮纖維，講開傘手感的差異。","林師傅教後生助教認竹節摎纖維，講開遮手感个差異。"],journal_2_title:["第一次把手感說成方法","Turning intuition into a method","手の感覚を方法に","頭一擺共手感講做方法","第一擺摎手感講做方法"],journal_2_desc:["過去只靠示範的削竹判斷，被整理成學員能反覆比對的三個觀察步驟。","A bamboo-shaving judgment is now a three-step checklist.","竹削りの判断を三つの観察手順に整理しました。","以前靠示範的削竹判斷，這馬整理做三步驟。","頭擺靠示範个削竹判斷，這下整理做三隻步驟。"],journal_3_title:["傘重新回到街道上","Umbrellas return to the street","傘が再び町へ","傘閣轉去街路","遮再過轉到街路"],journal_3_desc:["地方展出不只陳列作品，也邀請居民分享家中老傘與節慶記憶。","Residents shared memories of old family umbrellas and festivals.","住民が家の古い傘や祭りの記憶を語りました。","居民嘛分享老傘佮節慶記持。","居民也分享老遮摎節慶記憶。"],
+    checkout_title:["確認加入共養","Confirm Co-nurture Purchase","共養購入の確認","確認加入共養","確認加入共養"],checkout_includes:["這筆款項是購買作品，不是分級募資。你會收到實體手工作品、植入作品的 NFC，以及持續更新的數位技藝履歷。","This purchases the work, not a funding tier. You receive the handmade work, embedded NFC, and an evolving digital passport.","段階式支援ではなく作品の購入です。実物作品、NFC、更新されるデジタル履歴を受け取ります。","這筆錢是買作品，毋是分級募資。你會收著作品、NFC 佮數位履歷。","這筆錢係買作品，毋係分級募資。你會收著作品、NFC 摎數位履歷。"],checkout_item_1:["實體手工作品一件","One physical handmade work","手仕事の実物作品1点","實體手工作品一件","實體手工作品一件"],checkout_item_2:["作品專屬 NFC 標籤","Work-specific NFC tag","作品専用NFCタグ","作品專屬 NFC 標籤","作品專屬 NFC 標籤"],checkout_item_3:["數位技藝履歷永久入口","Permanent digital craft passport","デジタル技芸履歴への永続アクセス","數位技藝履歷永久入口","數位技藝履歷永久入口"],order_total:["訂單金額","Order Total","注文金額","訂單金額","訂單金額"],checkout_form_title:["填寫寄送與付款資料","Shipping & payment details","配送・支払い情報","填寄送佮付款資料","填寄送摎付款資料"],demo_notice:["此為競賽展示付款流程，不會產生真實扣款。","Demo only. No real charge will occur.","展示用です。実際の決済は行われません。","這是展示，袂真正扣款。","這係展示，毋會真正扣款。"],shipping_address:["地址","Shipping Address","配送先住所","地址","地址"],card_info:["信用卡資料","Card Details","カード情報","信用卡資料","信用卡資料"],demo_fill_123:["（展示模式填 123 即可）","(Enter 123 in demo mode)","（デモでは123と入力）","（展示模式填 123 就會使）","（展示模式填 123 就做得）"],amount_due:["本次付款","Amount Due","今回のお支払い","這擺付款","這擺付款"],submit_order:["送出","Submit","送信","送出","送出"],joined_success:["您已加入共養","You’ve joined co-nurture","共養に参加しました","你已經加入共養","你已加入共養"],joined_success_desc:["我們已收到您的訂單。付款完成後，你將取得實體作品與專屬 NFC 數位技藝履歷。","We received your order. You will receive the physical work and its NFC passport.","ご注文を受け付けました。実物作品と専用NFC履歴をお届けします。","阮收著你的訂單矣。你會提著作品佮 NFC 履歷。","𠊎等收著若个訂單吔。你會拿著作品摎 NFC 履歷。"],return_home:["返回主頁","Return Home","ホームへ戻る","轉去頭頁","轉到頭頁"],reply_received:["我們已收到您的回覆","We’ve received your message","メッセージを受け付けました","阮已經收著你的回覆","𠊎等收著若个回覆吔"],reply_received_desc:["謝謝你聯絡記藝共養所，我們會依你留下的資訊回覆。","Thank you for contacting us. We’ll reply using your details.","お問い合わせありがとうございます。入力情報をもとに返信します。","多謝你聯絡阮，阮會照你留的資料回覆。","承蒙你聯絡𠊎等，𠊎等會照若个資料回覆。"],
+    checkout_umbrella_name:["美濃油紙傘","Meinong Oil-paper Umbrella","美濃油紙傘","美濃油紙傘","美濃油紙遮"],checkout_bamboo_name:["竹編生活小物","Bamboo Daily Object","竹編みの生活小物","竹編生活小物","竹編生活細物"],checkout_chunzihua_name:["春仔花共養飾品","Co-nurtured Silk-flower Jewelry","春仔花 共養装身具","春仔花共養飾品","春仔花共養飾品"]
+  });
+
   const phraseKeys={
     "記藝共養所":"brand","品牌故事":"nav_story","共養模式":"nav_model","掃描我的NFC":"nav_nfc","商品頁":"nav_products","共養方案":"nav_plans","聯絡我們":"nav_contact","加入共養":"join","探索更多作品":"explore_more","讓每一次共養，都成為文化延續的力量。":"footer_line",
     "探索共養商品":"explore_more","查看完整 Demo":"nav_nfc","查看 NFC Demo":"nav_nfc","體驗數位履歷":"nav_nfc","商品系列":"nav_products","首頁":"home","回到首頁":"home",
@@ -2089,3 +2158,4 @@ window.JIYI_LEGACY_FULL={
 </script>
 </body>
 </html>
+
